@@ -8,6 +8,7 @@ import com.sxx.framework.domain.dynamic.response.DynamicTypeResponse;
 import com.sxx.framework.model.response.CommonCode;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.mapper.DynamicMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ import java.util.List;
 public class DynamicService {
     @Autowired
     private DynamicMapper dynamicMapper;
+
     /**
      * 展示思学行动态列表
      *
@@ -34,8 +36,9 @@ public class DynamicService {
      */
     public DynamicTypeResponse showDynamicTypeList() {
         List<DynamicType> dynamicType = dynamicMapper.findDynamicType();
-        return new DynamicTypeResponse(CommonCode.SUCCESS,dynamicType);
+        return new DynamicTypeResponse(CommonCode.SUCCESS, dynamicType);
     }
+
     /**
      * 展示交易信息:公司和服务商列表
      *
@@ -43,62 +46,66 @@ public class DynamicService {
      * @return 新闻资讯列表结果
      */
     public DynamicListResult showNewsInfoList(Long typeId) {
+        if (typeId == null) {
+            return new DynamicListResult(CommonCode.FAIL, null);
+        }
         List<Dynamic> newsInfoListByTypeId = dynamicMapper.findNewsInfoListByTypeId(typeId);
-        return new DynamicListResult(CommonCode.SUCCESS,newsInfoListByTypeId);
+        return new DynamicListResult(CommonCode.SUCCESS, newsInfoListByTypeId);
     }
+
     /**
      * 添加思学行动态信息
+     *
      * @param dynamic 思学行动态信息
      * @return 结果集
      */
     public ResponseResult addDynamic(Dynamic dynamic) {
-        try {
-            dynamicMapper.save(dynamic);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (dynamic == null){
             return new ResponseResult(CommonCode.FAIL);
         }
-            return new ResponseResult(CommonCode.SUCCESS);
+        dynamicMapper.save(dynamic);
+        return new ResponseResult(CommonCode.SUCCESS);
     }
+
     /**
      * 删除思学行动态信息
+     *
      * @param id 信息id
      * @return 结果集
      */
     public ResponseResult delDynamic(Long id) {
-        try {
-            dynamicMapper.delete(id);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (id == null){
             return new ResponseResult(CommonCode.FAIL);
         }
+        dynamicMapper.delete(id);
         return new ResponseResult(CommonCode.SUCCESS);
     }
 
     /**
      * 根据id查看编辑思学行动态信息
+     *
      * @param id 信息id
      * @return 思学行动态信息
      */
     public DynamicResult queryDynamic(Long id) {
-        if (id == null){
-            return new DynamicResult(CommonCode.FAIL,null);
+        if (id == null) {
+            return new DynamicResult(CommonCode.FAIL, null);
         }
         Dynamic dynamic = dynamicMapper.query(id);
-        return new DynamicResult(CommonCode.SUCCESS,dynamic);
+        return new DynamicResult(CommonCode.SUCCESS, dynamic);
     }
+
     /**
      * 更新修改思学行动态信息
+     *
      * @param dynamic 动态信息
      * @return 结果集
      */
     public ResponseResult updateDynamic(Dynamic dynamic) {
-        try {
-            dynamicMapper.update(dynamic);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (dynamic.getId() == null){
             return new ResponseResult(CommonCode.FAIL);
         }
+        dynamicMapper.update(dynamic);
         return new ResponseResult(CommonCode.SUCCESS);
     }
 }
