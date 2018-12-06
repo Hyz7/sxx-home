@@ -1,5 +1,7 @@
 package com.sxx.manage.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.DynamicType;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult;
@@ -40,17 +42,27 @@ public class DynamicService {
     }
 
     /**
-     * 展示交易信息:公司和服务商列表
+     * 根据分类id展示思学行动态信息
      *
-     * @param typeId 分类id
-     * @return 新闻资讯列表结果
+     * @param typeId 动态分类id
+     * @param page   当前页数
+     * @param size   当前页记录数
+     * @return 结果集
      */
-    public DynamicListResult showNewsInfoList(Long typeId) {
+    public DynamicListResult showNewsInfoList(Long typeId, Integer page, Integer size) {
         if (typeId == null) {
             return new DynamicListResult(CommonCode.FAIL, null);
         }
-        List<Dynamic> newsInfoListByTypeId = dynamicMapper.findNewsInfoListByTypeId(typeId);
-        return new DynamicListResult(CommonCode.SUCCESS, newsInfoListByTypeId);
+        if (page == null){
+            page = 1;
+        }
+        if (size == null){
+            size = 5;
+        }
+        PageHelper.startPage(page,size);
+        Page<Dynamic> pageList = dynamicMapper.findNewsInfoListByTypeId(typeId);
+        List<Dynamic> dynamicList = pageList.getResult();
+        return new DynamicListResult(CommonCode.SUCCESS, dynamicList);
     }
 
     /**
@@ -60,7 +72,7 @@ public class DynamicService {
      * @return 结果集
      */
     public ResponseResult addDynamic(Dynamic dynamic) {
-        if (dynamic == null){
+        if (dynamic == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
         dynamicMapper.save(dynamic);
@@ -74,7 +86,7 @@ public class DynamicService {
      * @return 结果集
      */
     public ResponseResult delDynamic(Long id) {
-        if (id == null){
+        if (id == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
         dynamicMapper.delete(id);
@@ -102,7 +114,7 @@ public class DynamicService {
      * @return 结果集
      */
     public ResponseResult updateDynamic(Dynamic dynamic) {
-        if (dynamic.getId() == null){
+        if (dynamic.getId() == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
         dynamicMapper.update(dynamic);

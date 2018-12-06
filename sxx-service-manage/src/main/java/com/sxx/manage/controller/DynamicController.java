@@ -35,16 +35,19 @@ public class DynamicController implements DynamicControllerApi {
     }
 
     /**
-     * 展示交易信息:公司和服务商列表
+     * 根据分类id展示思学行动态信息
      *
-     * @param typeId 分类id
-     * @return 新闻资讯列表结果
+     * @param typeId 动态分类id
+     * @param page   当前页数
+     * @param size   当前页记录数
+     * @return 结果集
      */
     @Override
     @GetMapping("/showNewsInfoList")
-    public DynamicListResult showNewsInfoList(Long typeId) {
-        return dynamicService.showNewsInfoList(typeId);
+    public DynamicListResult showNewsInfoList(Long typeId, Integer page, Integer size) {
+        return dynamicService.showNewsInfoList(typeId,page,size);
     }
+
     /**
      * 添加思学行动态信息
      * @param dynamic 思学行动态信息

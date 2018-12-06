@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
  * @create 2018/12/3 0003
  * @since 1.0.0
  */
-@Api(value = "思学行动态", description = "新闻资讯,行业动态,学员动态的展示")
+@Api(value = "思学行动态", description = "思学行动态:新闻资讯,行业动态,学员动态的增,删,改,查")
 public interface DynamicControllerApi {
     /**
      * 展示思学行动态列表
@@ -27,13 +27,15 @@ public interface DynamicControllerApi {
     DynamicTypeResponse showDynamicTypeList();
 
     /**
-     * 展示交易信息:公司和服务商列表
+     * 根据分类id展示思学行动态信息
      *
-     * @param typeId 分类id
-     * @return 新闻资讯列表结果
+     * @param typeId 动态分类id
+     * @param page   当前页数
+     * @param size   当前页记录数
+     * @return 结果集
      */
     @ApiOperation("根据分类id展示思学行动态信息")
-    DynamicListResult showNewsInfoList(Long typeId);
+    DynamicListResult showNewsInfoList(Long typeId,Integer page,Integer size);
 
     /**
      * 添加思学行动态信息

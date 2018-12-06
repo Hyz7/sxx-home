@@ -1,5 +1,6 @@
 package com.sxx.manage.mapper;
 
+import com.github.pagehelper.Page;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.DynamicType;
 import org.apache.ibatis.annotations.*;
@@ -30,7 +31,7 @@ public interface DynamicMapper {
      * @return 新闻资讯列表结果
      */
     @Select("select * from t_dynamic td where td.typeId = #{typeId}")
-    List<Dynamic> findNewsInfoListByTypeId(@Param("typeId") Long typeId);
+    Page<Dynamic> findNewsInfoListByTypeId(@Param("typeId") Long typeId);
 
     /**
      * 添加记录
