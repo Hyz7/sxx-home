@@ -1,3 +1,3 @@
-com\sxx\api\member\DynamicControllerApi.class
+com\sxx\api\dynamic\DynamicControllerApi.class
 com\sxx\api\config\CorsConfiguration.class
 com\sxx\api\config\Swagger2Configuration.class

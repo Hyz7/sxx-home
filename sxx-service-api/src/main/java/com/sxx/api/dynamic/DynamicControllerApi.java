@@ -2,6 +2,7 @@ package com.sxx.api.dynamic;
 
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult;
+import com.sxx.framework.domain.dynamic.response.DynamicListResult2;
 import com.sxx.framework.domain.dynamic.response.DynamicResult;
 import com.sxx.framework.domain.dynamic.response.DynamicTypeResponse;
 import com.sxx.framework.model.response.ResponseResult;
@@ -27,15 +28,14 @@ public interface DynamicControllerApi {
     DynamicTypeResponse showDynamicTypeList();
 
     /**
-     * 根据分类id展示思学行动态信息
+     * 展示思学行动态信息
      *
-     * @param typeId 动态分类id
      * @param page   当前页数
      * @param size   当前页记录数
      * @return 结果集
      */
-    @ApiOperation("根据分类id展示思学行动态信息")
-    DynamicListResult showNewsInfoList(Long typeId,Integer page,Integer size);
+    @ApiOperation("展示思学行动态信息")
+    DynamicListResult showNewsInfoList(Integer page,Integer size);
 
     /**
      * 添加思学行动态信息
@@ -68,4 +68,14 @@ public interface DynamicControllerApi {
      */
     @ApiOperation("更新修改思学行动态信息")
     ResponseResult updateDynamic(Dynamic dynamic);
+
+    /**
+     *
+     * @param typeId 分类id
+     * @param page   当前页数
+     * @param size   当前页记录数
+     * @return 结果集
+     */
+    @ApiOperation("根据分类id查询动态信息")
+    DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size);
 }

@@ -30,4 +30,6 @@ public class Dynamic extends BaseDomain {
     private String createTime;
     @ApiModelProperty("图片")
     private String image;
+    @ApiModelProperty("分类名称")
+    private String typeName;
 }

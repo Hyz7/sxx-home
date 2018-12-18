@@ -1,6 +1,6 @@
-E:\sxx-project\sxx-home\sxx-framework-model\src\main\java\com\sxx\domain\dynamic\DynamicType.java
-E:\sxx-project\sxx-home\sxx-framework-model\src\main\java\com\sxx\domain\dynamic\NewsDynamic.java
-E:\sxx-project\sxx-home\sxx-framework-model\src\main\java\com\sxx\domain\base\BaseDynamic.java
-E:\sxx-project\sxx-home\sxx-framework-model\src\main\java\com\sxx\domain\dynamic\StudentDynamic.java
-E:\sxx-project\sxx-home\sxx-framework-model\src\main\java\com\sxx\domain\base\BaseDomain.java
-E:\sxx-project\sxx-home\sxx-framework-model\src\main\java\com\sxx\domain\dynamic\IndustryDynamic.java
+E:\sxx-home\sxx-framework-model\src\main\java\com\sxx\framework\domain\dynamic\response\DynamicTypeResponse.java
+E:\sxx-home\sxx-framework-model\src\main\java\com\sxx\framework\domain\base\BaseDomain.java
+E:\sxx-home\sxx-framework-model\src\main\java\com\sxx\framework\domain\dynamic\response\DynamicResult.java
+E:\sxx-home\sxx-framework-model\src\main\java\com\sxx\framework\domain\dynamic\Dynamic.java
+E:\sxx-home\sxx-framework-model\src\main\java\com\sxx\framework\domain\dynamic\DynamicType.java
+E:\sxx-home\sxx-framework-model\src\main\java\com\sxx\framework\domain\dynamic\response\DynamicListResult.java

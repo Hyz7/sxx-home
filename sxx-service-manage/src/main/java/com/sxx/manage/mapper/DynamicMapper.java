@@ -25,13 +25,13 @@ public interface DynamicMapper {
     @Select("select * from t_type")
     List<DynamicType> findDynamicType();
     /**
-     * 展示交易信息:公司和服务商列表
+     * 展示思学行动态信息
      *
      * @param typeId 分类id
-     * @return 新闻资讯列表结果
+     * @return 展示思学行动态信息
      */
-    @Select("select * from t_dynamic td where td.typeId = #{typeId}")
-    Page<Dynamic> findNewsInfoListByTypeId(@Param("typeId") Long typeId);
+    @Select("select t.typeName,t.typeId,d.id,d.title,d.content,d.createTime,d.image from t_type t , t_dynamic d where t.typeId = d.typeId and d.typeId = #{typeId}")
+    Page<Dynamic> findDynamicList(@Param("typeId") Long typeId);
 
     /**
      * 添加记录
@@ -60,4 +60,19 @@ public interface DynamicMapper {
      * @param dynamic 思学行动态记录
      */
     void update(Dynamic dynamic);
+
+    /**
+     * 根据分类id查询分类名
+     * @param typeId 分类id
+     * @return 分类名称
+     */
+    String findTypeNameById(String typeId);
+
+    /**
+     * 根据分类id查询动态信息
+     * @param typeId 分类id
+     * @return 结果
+     */
+    @Select("select * from t_dynamic where typeId = #{typeId}")
+    Page<Dynamic> findDynamicListByTypeId(@Param("typeId") String typeId);
 }

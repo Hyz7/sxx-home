@@ -1,6 +1,6 @@
-com\sxx\domain\dynamic\NewsDynamic.class
-com\sxx\domain\dynamic\StudentDynamic.class
-com\sxx\domain\dynamic\IndustryDynamic.class
-com\sxx\domain\base\BaseDomain.class
-com\sxx\domain\dynamic\DynamicType.class
-com\sxx\domain\base\BaseDynamic.class
+com\sxx\framework\domain\dynamic\response\DynamicTypeResponse.class
+com\sxx\framework\domain\dynamic\Dynamic.class
+com\sxx\framework\domain\dynamic\response\DynamicListResult.class
+com\sxx\framework\domain\dynamic\response\DynamicResult.class
+com\sxx\framework\domain\base\BaseDomain.class
+com\sxx\framework\domain\dynamic\DynamicType.class

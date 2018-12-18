@@ -1,6 +1,7 @@
 package com.sxx.framework.domain.dynamic.response;
 
 import com.sxx.framework.domain.dynamic.Dynamic;
+import com.sxx.framework.domain.dynamic.ext.DynamicExt;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.framework.model.response.ResultCode;
 import lombok.Data;
@@ -17,11 +18,15 @@ import java.util.List;
  */
 @Data
 public class DynamicListResult extends ResponseResult {
-    List<Dynamic> dynamics;
+    List<DynamicExt> newsList;
+    List<Dynamic> industryList;
+    List<DynamicExt> studentList;
 
-    public DynamicListResult(ResultCode resultCode, List<Dynamic> dynamics) {
+    public DynamicListResult(ResultCode resultCode, List<DynamicExt> newsList, List<Dynamic> industryList, List<DynamicExt> studentList) {
         super(resultCode);
-        this.dynamics = dynamics;
+        this.newsList = newsList;
+        this.industryList = industryList;
+        this.studentList = studentList;
     }
 }
 

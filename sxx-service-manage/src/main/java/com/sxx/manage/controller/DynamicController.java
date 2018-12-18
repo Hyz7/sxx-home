@@ -3,6 +3,7 @@ package com.sxx.manage.controller;
 import com.sxx.api.dynamic.DynamicControllerApi;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult;
+import com.sxx.framework.domain.dynamic.response.DynamicListResult2;
 import com.sxx.framework.domain.dynamic.response.DynamicResult;
 import com.sxx.framework.domain.dynamic.response.DynamicTypeResponse;
 import com.sxx.framework.model.response.ResponseResult;
@@ -35,17 +36,16 @@ public class DynamicController implements DynamicControllerApi {
     }
 
     /**
-     * 根据分类id展示思学行动态信息
+     * 展示思学行动态信息
      *
-     * @param typeId 动态分类id
      * @param page   当前页数
      * @param size   当前页记录数
      * @return 结果集
      */
     @Override
     @GetMapping("/showNewsInfoList")
-    public DynamicListResult showNewsInfoList(Long typeId, Integer page, Integer size) {
-        return dynamicService.showNewsInfoList(typeId,page,size);
+    public DynamicListResult showNewsInfoList(Integer page, Integer size) {
+        return dynamicService.showNewsInfoList(page,size);
     }
 
     /**
@@ -55,7 +55,7 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @PostMapping("/addDynamic")
-    public ResponseResult addDynamic(Dynamic dynamic) {
+    public ResponseResult addDynamic(@RequestBody Dynamic dynamic) {
         return dynamicService.addDynamic(dynamic);
     }
     /**
@@ -66,7 +66,7 @@ public class DynamicController implements DynamicControllerApi {
     @Override
     @DeleteMapping("/delDynamic")
     public ResponseResult delDynamic(Long id) {
-        return null;
+        return dynamicService.delDynamic(id);
     }
     /**
      * 根据id查看编辑思学行动态信息
@@ -85,7 +85,20 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @PostMapping("/updateDynamic")
-    public ResponseResult updateDynamic(Dynamic dynamic) {
+    public ResponseResult updateDynamic(@RequestBody Dynamic dynamic) {
         return dynamicService.updateDynamic(dynamic);
+    }
+
+    /**
+     *
+     * @param typeId 分类id
+     * @param page   当前页数
+     * @param size   当前页记录数
+     * @return 结果集
+     */
+    @Override
+    @GetMapping("/showNewsListByTypeId")
+    public DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size) {
+        return dynamicService.showNewsListByTypeId(typeId, page, size);
     }
 }
