@@ -51,7 +51,7 @@ public interface DynamicControllerApi {
      * @return 结果集
      */
     @ApiOperation("删除思学行动态信息")
-    ResponseResult delDynamic(Long id);
+    ResponseResult delDynamic(Long[] id);
 
     /**
      * 根据id查看编辑思学行动态信息
@@ -78,4 +78,5 @@ public interface DynamicControllerApi {
      */
     @ApiOperation("根据分类id查询动态信息")
     DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size);
+
 }

@@ -9,6 +9,7 @@ import com.sxx.framework.domain.dynamic.response.DynamicListResult;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult2;
 import com.sxx.framework.domain.dynamic.response.DynamicResult;
 import com.sxx.framework.domain.dynamic.response.DynamicTypeResponse;
+import com.sxx.framework.domain.page.PageResult;
 import com.sxx.framework.model.response.CommonCode;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.mapper.DynamicMapper;
@@ -84,7 +85,6 @@ public class DynamicService {
         if (dynamic == null || dynamic.getTypeId() == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
-        this.insertImg()
         dynamicMapper.save(dynamic);
         return new ResponseResult(CommonCode.SUCCESS);
     }
@@ -92,14 +92,16 @@ public class DynamicService {
     /**
      * 删除思学行动态信息
      *
-     * @param id 信息id
+     * @param ids 信息id
      * @return 结果集
      */
-    public ResponseResult delDynamic(Long id) {
-        if (id == null) {
+    public ResponseResult delDynamic(Long[] ids) {
+        if (ids == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
-        dynamicMapper.delete(id);
+        for (Long id : ids) {
+            dynamicMapper.delete(id);
+        }
         return new ResponseResult(CommonCode.SUCCESS);
     }
 
@@ -170,8 +172,9 @@ public class DynamicService {
      * @return 结果集
      */
     public DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size) {
+        PageResult pageResult = new PageResult();
         if (typeId == null){
-            return new DynamicListResult2(CommonCode.FAIL,null);
+            return new DynamicListResult2(CommonCode.FAIL,null,pageResult);
         }
         if (page == null){
             page = 1;
@@ -181,6 +184,7 @@ public class DynamicService {
         }
         PageHelper.startPage(page,size);
         Page<Dynamic> dynamicPage = dynamicMapper.findDynamicListByTypeId(typeId);
+        pageResult.setTotal(dynamicPage.getTotal());
         List<Dynamic> dynamicList = dynamicPage.getResult();
         List<Dynamic> newList = new ArrayList<>();
         for (Dynamic dynamic : dynamicList) {
@@ -192,7 +196,8 @@ public class DynamicService {
             }
             newList.add(dynamic);
         }
-        return new DynamicListResult2(CommonCode.SUCCESS,newList);
+        return new DynamicListResult2(CommonCode.SUCCESS,newList,pageResult);
 
     }
+
 }

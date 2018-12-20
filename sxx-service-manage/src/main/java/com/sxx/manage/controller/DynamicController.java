@@ -65,7 +65,7 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @DeleteMapping("/delDynamic")
-    public ResponseResult delDynamic(Long id) {
+    public ResponseResult delDynamic(Long[] id) {
         return dynamicService.delDynamic(id);
     }
     /**
