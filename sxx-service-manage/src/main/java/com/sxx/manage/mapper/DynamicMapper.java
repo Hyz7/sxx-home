@@ -73,6 +73,6 @@ public interface DynamicMapper {
      * @param typeId 分类id
      * @return 结果
      */
-    @Select("select * from t_dynamic where typeId = #{typeId}")
+    @Select("select d.*,t.typeName from t_dynamic d, t_type t where d.typeId = t.typeId and t.typeId = #{typeId}")
     Page<Dynamic> findDynamicListByTypeId(@Param("typeId") String typeId);
 }

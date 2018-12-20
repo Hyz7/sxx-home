@@ -81,9 +81,10 @@ public class DynamicService {
      * @return 结果集
      */
     public ResponseResult addDynamic(Dynamic dynamic) {
-        if (dynamic == null) {
+        if (dynamic == null || dynamic.getTypeId() == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
+        this.insertImg()
         dynamicMapper.save(dynamic);
         return new ResponseResult(CommonCode.SUCCESS);
     }
@@ -184,6 +185,7 @@ public class DynamicService {
         List<Dynamic> newList = new ArrayList<>();
         for (Dynamic dynamic : dynamicList) {
             String content = dynamic.getContent();
+            dynamic.setHtml(content);
             if (content!=null){
                 content=content.replaceAll("<[.[^<]]*>", "");
                 dynamic.setContent(content);

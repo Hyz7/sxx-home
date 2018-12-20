@@ -101,4 +101,5 @@ public class DynamicController implements DynamicControllerApi {
     public DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size) {
         return dynamicService.showNewsListByTypeId(typeId, page, size);
     }
+
 }

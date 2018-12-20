@@ -32,4 +32,7 @@ public class Dynamic extends BaseDomain {
     private String image;
     @ApiModelProperty("分类名称")
     private String typeName;
+    @ApiModelProperty("带标签的")
+    private String html;
+
 }
