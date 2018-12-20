@@ -30,7 +30,7 @@ public interface DynamicMapper {
      * @param typeId 分类id
      * @return 展示思学行动态信息
      */
-    @Select("select t.typeName,t.typeId,d.id,d.title,d.content,d.createTime,d.image from t_type t , t_dynamic d where t.typeId = d.typeId and d.typeId = #{typeId}")
+    @Select("select t.typeName,t.typeId,d.id,d.title,d.content,d.createTime,d.image from t_type t , t_dynamic d where t.typeId = d.typeId and d.typeId = #{typeId} ORDER BY createTime DESC")
     Page<Dynamic> findDynamicList(@Param("typeId") Long typeId);
 
     /**
@@ -73,6 +73,6 @@ public interface DynamicMapper {
      * @param typeId 分类id
      * @return 结果
      */
-    @Select("select d.*,t.typeName from t_dynamic d, t_type t where d.typeId = t.typeId and t.typeId = #{typeId}")
+    @Select("select d.*,t.typeName from t_dynamic d, t_type t where d.typeId = t.typeId and t.typeId = #{typeId} ORDER BY createTime DESC")
     Page<Dynamic> findDynamicListByTypeId(@Param("typeId") String typeId);
 }

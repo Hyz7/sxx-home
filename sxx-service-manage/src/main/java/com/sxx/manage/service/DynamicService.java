@@ -19,10 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -84,6 +82,11 @@ public class DynamicService {
     public ResponseResult addDynamic(Dynamic dynamic) {
         if (dynamic == null || dynamic.getTypeId() == null) {
             return new ResponseResult(CommonCode.FAIL);
+        }
+        if (dynamic.getCreateTime() == null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String createTime = simpleDateFormat.format(new Date());
+            dynamic.setCreateTime(createTime);
         }
         dynamicMapper.save(dynamic);
         return new ResponseResult(CommonCode.SUCCESS);

@@ -79,4 +79,5 @@ public interface DynamicControllerApi {
     @ApiOperation("根据分类id查询动态信息")
     DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size);
 
+
 }
