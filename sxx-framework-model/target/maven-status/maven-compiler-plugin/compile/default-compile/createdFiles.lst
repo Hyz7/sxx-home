@@ -1,6 +1,6 @@
 com\sxx\framework\domain\dynamic\response\DynamicTypeResponse.class
 com\sxx\framework\domain\dynamic\Dynamic.class
+com\sxx\framework\domain\dynamic\DynamicType.class
 com\sxx\framework\domain\dynamic\response\DynamicListResult.class
 com\sxx\framework\domain\dynamic\response\DynamicResult.class
 com\sxx\framework\domain\base\BaseDomain.class
-com\sxx\framework\domain\dynamic\DynamicType.class

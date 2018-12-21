@@ -8,7 +8,7 @@
             <if test="title!=null">title=#{title},</if>
             <if test="content!=null">content=#{content},</if>
             <if test="createTime!=null">createTime=#{createTime},</if>
-            <if test="image!=null">image=#{image},</if>
+            <if test="typeName!=null">typeName=#{typeName},</if>
         </trim>
         WHERE id=#{id}
     </update>

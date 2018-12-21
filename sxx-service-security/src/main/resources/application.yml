@@ -1,0 +1,15 @@
+server:
+  port: 31000
+spring:
+  application:
+    name: sxx-service-security
+  datasource:
+    url: jdbc:mysql://sxxhome.c8vijrlj3ip4.rds.cn-northwest-1.amazonaws.com.cn:3306/sxx?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: sxxpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true # 开启驼峰命名转换法
