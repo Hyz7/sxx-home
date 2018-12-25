@@ -12,4 +12,26 @@
         </trim>
         WHERE id=#{id}
     </update>
+
+    <select id="findNewsList" resultType="com.sxx.framework.domain.dynamic.Dynamic">
+        SELECT
+            t.typeName,
+            t.typeId,
+            d.id,
+            d.title,
+            d.content,
+            d.createTime,
+            d.image
+        FROM
+            t_type t,
+            t_dynamic d
+        WHERE
+            t.typeId = d.typeId
+        AND d.typeId = #{typeId}
+        <if test="name != null and name != ''">
+            AND d.title LIKE CONCAT(CONCAT('%',#{name},'%'))
+        </if>
+        ORDER BY
+	  d.createTime DESC
+    </select>
 </mapper>

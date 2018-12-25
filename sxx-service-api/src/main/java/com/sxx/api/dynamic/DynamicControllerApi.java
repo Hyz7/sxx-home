@@ -35,7 +35,7 @@ public interface DynamicControllerApi {
      * @return 结果集
      */
     @ApiOperation("展示思学行动态信息")
-    DynamicListResult showNewsInfoList(Integer page,Integer size);
+    DynamicListResult showNewsInfoList(String name,Integer page,Integer size);
 
     /**
      * 添加思学行动态信息

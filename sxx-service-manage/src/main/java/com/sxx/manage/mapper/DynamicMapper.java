@@ -62,17 +62,17 @@ public interface DynamicMapper {
     void update(Dynamic dynamic);
 
     /**
-     * 根据分类id查询分类名
-     * @param typeId 分类id
-     * @return 分类名称
-     */
-    String findTypeNameById(String typeId);
-
-    /**
      * 根据分类id查询动态信息
      * @param typeId 分类id
      * @return 结果
      */
     @Select("select d.*,t.typeName from t_dynamic d, t_type t where d.typeId = t.typeId and t.typeId = #{typeId} ORDER BY createTime DESC")
     Page<Dynamic> findDynamicListByTypeId(@Param("typeId") String typeId);
+
+    /**
+     * 分页模糊查询新闻列表
+     * @param typeId 分类id
+     * @return 结果
+     */
+    Page<Dynamic> findNewsList(@Param("typeId") Long typeId,@Param("name") String name);
 }

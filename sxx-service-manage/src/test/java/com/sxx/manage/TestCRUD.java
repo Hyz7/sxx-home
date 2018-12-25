@@ -1,5 +1,6 @@
 package com.sxx.manage;
 
+import com.github.pagehelper.Page;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.manage.mapper.DynamicMapper;
 import org.junit.Test;
@@ -7,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -31,5 +34,12 @@ public class TestCRUD {
         dynamic.setTitle("12323");
         dynamic.setTypeId("1");
         dynamicMapper.update(dynamic);
+    }
+
+    @Test
+    public void testQueryNewsList(){
+        Page<Dynamic> newsList = dynamicMapper.findNewsList(1L, "西博会");
+        List<Dynamic> result = newsList.getResult();
+        System.out.println(result);
     }
 }

@@ -44,8 +44,8 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @GetMapping("/showNewsInfoList")
-    public DynamicListResult showNewsInfoList(Integer page, Integer size) {
-        return dynamicService.showNewsInfoList(page,size);
+    public DynamicListResult showNewsInfoList(String name,Integer page, Integer size) {
+        return dynamicService.showNewsInfoList(name,page,size);
     }
 
     /**

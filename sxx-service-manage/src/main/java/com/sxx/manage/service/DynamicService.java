@@ -53,23 +53,23 @@ public class DynamicService {
      * @param size   当前页记录数
      * @return 结果集
      */
-    public DynamicListResult showNewsInfoList(Integer page, Integer size) {
+    public DynamicListResult showNewsInfoList(String name,Integer page, Integer size) {
         if (page == null){
             page = 1;
         }
         if (size == null){
             size = 5;
         }
-        PageHelper.startPage(page,5);
         // 获得新闻咨询列表
-        List<DynamicExt> newsList = findDynamicList(1L);
+        PageHelper.startPage(page,5);
+        List<DynamicExt> newsList = findDynamicList(1L,name);
         // 获得行业动态列表
         PageHelper.startPage(page,10);
         Page<Dynamic> pageList = dynamicMapper.findDynamicList(2L);
         List<Dynamic> industryList = pageList.getResult();
         // 获得学员动态列表
         PageHelper.startPage(page,5);
-        List<DynamicExt> studentList = findDynamicList(3L);
+        List<DynamicExt> studentList = findDynamicList(3L,null);
         return new DynamicListResult(CommonCode.SUCCESS, newsList,industryList,studentList);
     }
 
@@ -141,11 +141,16 @@ public class DynamicService {
      * @param typeId 分类id
      * @return 列表
      */
-    public List<DynamicExt> findDynamicList(Long typeId){
+    public List<DynamicExt> findDynamicList(Long typeId,String name){
         if (typeId == 2L){
             return null;
         }
-        Page<Dynamic> pageList = dynamicMapper.findDynamicList(typeId);
+        Page<Dynamic> pageList = null;
+        if (typeId == 1L){
+            pageList = dynamicMapper.findNewsList(typeId,name);
+        }else {
+            pageList = dynamicMapper.findDynamicList(typeId);
+        }
         List<Dynamic> dynamicList = pageList.getResult();
         List<DynamicExt> dynamicExtList = new ArrayList<>();
         for (Dynamic dynamic : dynamicList) {
