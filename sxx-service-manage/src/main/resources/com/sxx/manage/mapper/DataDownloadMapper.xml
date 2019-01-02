@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxx.manage.mapper.DataDownloadMapper">
+    <insert id="insertData" parameterType="com.sxx.framework.domain.data.DataEntity">
+        alter table `data` AUTO_INCREMENT=1;
+        insert into `data` values
+        (null,#{dataTitle},#{dataDesc},#{image},#{createTime},#{industry},
+        #{price},#{type},#{downloadCount},#{dataCategoryId},#{dataClassId},#{dataKey},#{fileType},#{eTag});
+    </insert>
+
+    <select id="findDataList" resultType="com.sxx.framework.domain.data.DataEntity">
+        SELECT
+        d.*, dc.category_name
+        FROM
+        `data` d
+        LEFT JOIN data_category dc ON d.data_category_id = dc.category_id
+        AND d.data_category_id = 1
+        WHERE
+        d.data_class_id = (
+        SELECT
+        d.data_class_id
+        FROM
+        data_class d
+        WHERE
+        d.data_class_name = '白皮书'
+        )
+        <if test="name != null and name != '' and name != 'undefined'">
+            AND d.data_title LIKE CONCAT(CONCAT('%',#{name},'%'))
+        </if>
+        ORDER BY
+        d.create_time DESC
+    </select>
+
+    <insert id="updateData" parameterType="com.sxx.framework.domain.data.DataEntity">
+        UPDATE `data`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="dataTitle!=null">dataTitle=#{dataTitle},</if>
+            <if test="dataDesc!=null">dataDesc=#{dataDesc},</if>
+            <if test="image!=null">image=#{image},</if>
+            <if test="createTime!=null">createTime=#{createTime},</if>
+            <if test="industry!=null">industry=#{industry},</if>
+            <if test="price!=null">price=#{price},</if>
+            <if test="type!=null">type=#{type},</if>
+            <if test="downloadCount!=null">downloadCount=#{downloadCount},</if>
+            <if test="dataCategoryId!=null">dataCategoryId=#{dataCategoryId},</if>
+            <if test="dataClassId!=null">dataClassId=#{dataClassId},</if>
+            <if test="dataKey!=null">dataKey=#{dataKey},</if>
+            <if test="fileType!=null">fileType=#{fileType},</if>
+            <if test="fileType!=null">eTag=#{eTag},</if>
+        </trim>
+        );
+    </insert>
+</mapper>

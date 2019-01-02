@@ -19,5 +19,4 @@ import java.util.List;
 @ToString
 public class DynamicExt extends Dynamic {
     private String contentKey;
-
 }

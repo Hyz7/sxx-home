@@ -2,6 +2,7 @@ package com.sxx.manage.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.DynamicType;
 import com.sxx.framework.domain.dynamic.ext.DynamicExt;
@@ -17,8 +18,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -61,8 +69,11 @@ public class DynamicService {
             size = 5;
         }
         // 获得新闻咨询列表
-        PageHelper.startPage(page,5);
+        PageHelper.startPage(page,6);
         List<DynamicExt> newsList = findDynamicList(1L,name);
+        if (newsList == null || newsList.size() <= 0){
+            newsList = findDynamicList(1L,null);
+        }
         // 获得行业动态列表
         PageHelper.startPage(page,10);
         Page<Dynamic> pageList = dynamicMapper.findDynamicList(2L);
@@ -145,7 +156,7 @@ public class DynamicService {
         if (typeId == 2L){
             return null;
         }
-        Page<Dynamic> pageList = null;
+        Page<Dynamic> pageList;
         if (typeId == 1L){
             pageList = dynamicMapper.findNewsList(typeId,name);
         }else {

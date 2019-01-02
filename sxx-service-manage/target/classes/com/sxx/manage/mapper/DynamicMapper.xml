@@ -9,9 +9,15 @@
             <if test="content!=null">content=#{content},</if>
             <if test="createTime!=null">createTime=#{createTime},</if>
             <if test="typeName!=null">typeName=#{typeName},</if>
+            <if test="image!=null">image=#{image},</if>
         </trim>
         WHERE id=#{id}
     </update>
+
+    <insert id="save" parameterType="com.sxx.framework.domain.dynamic.Dynamic">
+        alter table t_dynamic AUTO_INCREMENT=1;
+        insert into t_dynamic values(null,#{typeId},#{title},#{content},#{createTime},#{image});
+    </insert>
 
     <select id="findNewsList" resultType="com.sxx.framework.domain.dynamic.Dynamic">
         SELECT
@@ -28,7 +34,7 @@
         WHERE
             t.typeId = d.typeId
         AND d.typeId = #{typeId}
-        <if test="name != null and name != ''">
+        <if test="name != null and name != '' and name != 'undefined'">
             AND d.title LIKE CONCAT(CONCAT('%',#{name},'%'))
         </if>
         ORDER BY

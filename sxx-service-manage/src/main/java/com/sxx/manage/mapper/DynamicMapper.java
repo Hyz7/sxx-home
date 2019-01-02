@@ -37,7 +37,6 @@ public interface DynamicMapper {
      * 添加记录
      * @param dynamic 实体
      */
-    @Insert("insert into t_dynamic values(null,#{typeId},#{title},#{content},#{createTime},#{image})")
     void save(Dynamic dynamic);
 
     /**
