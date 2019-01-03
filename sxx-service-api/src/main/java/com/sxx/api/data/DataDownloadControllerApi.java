@@ -2,8 +2,10 @@ package com.sxx.api.data;
 
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
+import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.response.ResponseResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -23,9 +25,12 @@ public interface DataDownloadControllerApi {
      * @param dataEntity 数据
      * @return 结果
      */
+    @ApiOperation("添加资料下载数据")
     ResponseResult insertData(MultipartFile file, DataEntity dataEntity);
 
     /**
+     * 分页模糊查询资料下载数据内容
+     *
      * @param dataClassName    当前分类名称
      * @param dataCategoryName 当前分类行业名称
      * @param name             查询名称
@@ -33,6 +38,7 @@ public interface DataDownloadControllerApi {
      * @param size             当前页记录数
      * @return 结果
      */
+    @ApiOperation("分页模糊查询资料下载数据内容")
     DataEntityResult findDataList(String dataClassName, String dataCategoryName, String name, Integer page, Integer size);
 
     /**
@@ -41,7 +47,8 @@ public interface DataDownloadControllerApi {
      * @param dataId 下载的数据id
      * @return 结果
      */
-    ResponseResult downloadData(Integer dataId);
+    @ApiOperation("根据资料下载数据id进行资料下载")
+    DownloadResult downloadData(Integer dataId);
 
     /**
      * 根据id删除数据
@@ -49,6 +56,7 @@ public interface DataDownloadControllerApi {
      * @param ids id
      * @return 结果
      */
+    @ApiOperation("根据资料下载数据id进行删除数据")
     ResponseResult deleteData(Integer[] ids);
 
     /**
@@ -58,5 +66,6 @@ public interface DataDownloadControllerApi {
      * @param dataEntity 新数据
      * @return 结果
      */
+    @ApiOperation("更新资料下载数据")
     ResponseResult updateData(MultipartFile file, DataEntity dataEntity);
 }

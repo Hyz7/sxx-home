@@ -3,6 +3,7 @@ package com.sxx.manage.controller;
 import com.sxx.api.data.DataDownloadControllerApi;
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
+import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.service.DataDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class DataDownloadController implements DataDownloadControllerApi {
      */
     @Override
     @PostMapping("/insertData")
-    public ResponseResult insertData(@RequestParam("file") MultipartFile file, @RequestPart("dataEntity") DataEntity dataEntity) {
+    public ResponseResult insertData(@RequestParam(value = "file", required = false) MultipartFile file, @RequestPart("dataEntity") DataEntity dataEntity) {
         return dataDownloadService.insertData(file, dataEntity);
     }
 
@@ -59,7 +60,7 @@ public class DataDownloadController implements DataDownloadControllerApi {
      */
     @Override
     @GetMapping("/downloadData")
-    public ResponseResult downloadData(Integer dataId) {
+    public DownloadResult downloadData(Integer dataId) {
         return dataDownloadService.downloadData(dataId);
     }
 
@@ -84,7 +85,7 @@ public class DataDownloadController implements DataDownloadControllerApi {
      */
     @Override
     @PostMapping("/updateData")
-    public ResponseResult updateData(@RequestPart("file") MultipartFile file, @RequestPart("dataEntity") DataEntity dataEntity) {
+    public ResponseResult updateData(@RequestParam(value = "file", required = false) MultipartFile file, @RequestPart("dataEntity") DataEntity dataEntity) {
         return dataDownloadService.updateData(file, dataEntity);
     }
 }

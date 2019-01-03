@@ -4,22 +4,20 @@ import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.framework.model.response.ResultCode;
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * 〈一句话功能简述〉<br>
- * 〈查询返回集合通用结果集〉
+ * 〈下载文件响应类〉
  *
  * @author hyz
- * @create 2018/12/28 0028
+ * @create 2019/1/3 0003
  * @since 1.0.0
  */
 @Data
-public class QueryListResult<T> extends ResponseResult {
-    List<T> queryList;
+public class DownloadResult extends ResponseResult {
+    private String url;
 
-    public QueryListResult(ResultCode resultCode, List<T> queryList) {
+    public DownloadResult(ResultCode resultCode, String url) {
         super(resultCode);
-        this.queryList = queryList;
+        this.url = url;
     }
 }

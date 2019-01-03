@@ -1,7 +1,6 @@
 package com.sxx.manage.controller;
 
 import com.sxx.api.dynamic.DynamicControllerApi;
-import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult2;
@@ -9,10 +8,8 @@ import com.sxx.framework.domain.dynamic.response.DynamicResult;
 import com.sxx.framework.domain.dynamic.response.DynamicTypeResponse;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.service.DynamicService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -105,8 +102,4 @@ public class DynamicController implements DynamicControllerApi {
         return dynamicService.showNewsListByTypeId(typeId, page, size);
     }
 
-
-    public void upload(@RequestParam("file") MultipartFile file, @RequestBody DataEntity dataEntity){
-
-    }
 }

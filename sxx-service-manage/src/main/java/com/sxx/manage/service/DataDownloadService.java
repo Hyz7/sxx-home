@@ -1,25 +1,33 @@
 package com.sxx.manage.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
+import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.aws.AwsS3Bucket;
 import com.sxx.framework.model.response.CommonCode;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.mapper.DataDownloadMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
-import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.awscore.exception.AwsServiceException;
+import software.amazon.awssdk.core.exception.SdkClientException;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.*;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.nio.ByteBuffer;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +47,6 @@ import java.util.List;
 public class DataDownloadService {
     @Autowired
     private DataDownloadMapper dataDownloadMapper;
-
     /**
      * 添加数据
      *
@@ -85,10 +92,8 @@ public class DataDownloadService {
      * @param bucket     对象名
      */
     private void fileUpload(MultipartFile file, DataEntity dataEntity, String bucket) {
-        S3Client s3 = S3Client.builder().build();
+        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
         try {
-            byte[] bytes = file.getBytes();
-            ByteBuffer byteBuffer = ByteBuffer.wrap(bytes, 0, bytes.length);
             // 获得文件全称
             String originalFilename = file.getOriginalFilename();
             // 获得文件名
@@ -98,13 +103,14 @@ public class DataDownloadService {
             // 生成唯一文件名
             String key = filename + "SXX_" + System.currentTimeMillis() + substring;
             // 保存文件
-            PutObjectResponse putObjectResponse = s3.putObject(PutObjectRequest.builder().key(key).bucket(bucket)
-                            .build(),
-                    RequestBody.fromByteBuffer(byteBuffer));
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentType(file.getContentType());
+            objectMetadata.setContentLength(file.getSize());
+            PutObjectResult putObjectResult = s3.putObject(bucket, key, file.getInputStream(), objectMetadata);
             // 保存文件key和文件类型
             dataEntity.setDataKey(key);
             dataEntity.setFileType(substring);
-            dataEntity.setETag(putObjectResponse.eTag());
+            dataEntity.setETag(putObjectResult.getETag());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,19 +159,15 @@ public class DataDownloadService {
      * @param dataId 下载的数据id
      * @return 结果
      */
-    public ResponseResult downloadData(Integer dataId) {
+    public DownloadResult downloadData(Integer dataId) {
         // 根据id查询对应文件key
         DataEntity dataEntity = dataDownloadMapper.findByDataId(dataId);
-        String dataTitle = dataEntity.getDataTitle();
         String key = dataEntity.getDataKey();
-        String fileType = dataEntity.getFileType();
-        // 拼接文件名
-        String fileName = dataTitle + System.currentTimeMillis() + fileType;
-        S3Client s3 = S3Client.builder().build();
-        // 文件下载
-        s3.getObject(GetObjectRequest.builder().bucket(AwsS3Bucket.BAI_PI_SHU_BUCKET).key(key).build(),
-                ResponseTransformer.toFile(Paths.get("D:/" + fileName)));
-        return new ResponseResult(CommonCode.SUCCESS);
+        // 文件下载,返回文件的presign
+        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        GeneratePresignedUrlRequest urlRequest = new GeneratePresignedUrlRequest(AwsS3Bucket.BAI_PI_SHU_BUCKET, key);
+        URL url = s3.generatePresignedUrl(urlRequest);
+        return new DownloadResult(CommonCode.SUCCESS,url.toString());
     }
 
     /**
@@ -176,13 +178,15 @@ public class DataDownloadService {
      */
     public ResponseResult deleteData(Integer[] ids) {
         if (ids == null) {
-            return new ResponseResult(CommonCode.FAIL);
+            return new ResponseResult(CommonCode.INVALID_PARAM);
         }
         for (Integer id : ids) {
             // 删除资料数据
             DataEntity dataEntity = dataDownloadMapper.findByDataId(id);
             String dataKey = dataEntity.getDataKey();
-            this.fileDelete(AwsS3Bucket.BAI_PI_SHU_BUCKET, dataKey);
+            if (dataKey != null){
+                this.fileDelete(AwsS3Bucket.BAI_PI_SHU_BUCKET, dataKey);
+            }
             // 删除数据库数据
             dataDownloadMapper.deleteData(id);
         }
@@ -196,20 +200,30 @@ public class DataDownloadService {
      * @param dataEntity 新数据
      * @return 结果
      */
-    public ResponseResult updateData(MultipartFile file, @RequestPart("dataEntity") DataEntity dataEntity) {
-        // 判断文件是否更新
-        DataEntity entity = dataDownloadMapper.findByDataId(dataEntity.getDataId());
-        String filename = file.getOriginalFilename();
-        String dataKey = entity.getDataKey();
-        if (!filename.equals(dataKey)) {
-            // 更新文件
-            // 删除
-            boolean isDelete = this.fileDelete(AwsS3Bucket.BAI_PI_SHU_BUCKET, dataKey);
-            if (!isDelete) {
-                return new ResponseResult(CommonCode.FAIL);
+    public ResponseResult updateData(MultipartFile file, DataEntity dataEntity) {
+        if (dataEntity == null){
+            return new ResponseResult(CommonCode.INVALID_PARAM);
+        }
+        if (file != null){
+            // 判断文件是否更新
+            DataEntity entity = dataDownloadMapper.findByDataId(dataEntity.getDataId());
+            String filename = file.getOriginalFilename();
+            String dataKey = entity.getDataKey();
+            if (dataKey != null){
+                if (!filename.equals(dataKey)) {
+                    // 更新文件
+                    // 删除
+                    boolean isDelete = this.fileDelete(AwsS3Bucket.BAI_PI_SHU_BUCKET, dataKey);
+                    if (!isDelete) {
+                        return new ResponseResult(CommonCode.FAIL);
+                    }
+                    // 上传
+                    this.fileUpload(file, dataEntity,AwsS3Bucket.BAI_PI_SHU_BUCKET);
+                }
+            }else {
+                this.fileUpload(file, dataEntity,AwsS3Bucket.BAI_PI_SHU_BUCKET);
             }
-            // 上传
-            this.fileUpload(file, dataEntity,AwsS3Bucket.BAI_PI_SHU_BUCKET);
+
         }
         dataDownloadMapper.updateData(dataEntity);
         return new ResponseResult(CommonCode.SUCCESS);
@@ -223,9 +237,13 @@ public class DataDownloadService {
      * @return 是否成功
      */
     private boolean fileDelete(String bucket, String key) {
-        S3Client s3 = S3Client.builder().build();
-        DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder().bucket(bucket).key(key).build();
-        s3.deleteObject(deleteObjectRequest);
-        return true;
+        try {
+            final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+            s3.deleteObject(bucket,key);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

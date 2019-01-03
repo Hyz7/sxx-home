@@ -34,20 +34,20 @@
     <insert id="updateData" parameterType="com.sxx.framework.domain.data.DataEntity">
         UPDATE `data`
         <trim prefix="set" suffixOverrides=",">
-            <if test="dataTitle!=null">dataTitle=#{dataTitle},</if>
-            <if test="dataDesc!=null">dataDesc=#{dataDesc},</if>
+            <if test="dataTitle!=null">data_title=#{dataTitle},</if>
+            <if test="dataDesc!=null">data_desc=#{dataDesc},</if>
             <if test="image!=null">image=#{image},</if>
-            <if test="createTime!=null">createTime=#{createTime},</if>
+            <if test="createTime!=null">create_time=#{createTime},</if>
             <if test="industry!=null">industry=#{industry},</if>
             <if test="price!=null">price=#{price},</if>
             <if test="type!=null">type=#{type},</if>
-            <if test="downloadCount!=null">downloadCount=#{downloadCount},</if>
-            <if test="dataCategoryId!=null">dataCategoryId=#{dataCategoryId},</if>
-            <if test="dataClassId!=null">dataClassId=#{dataClassId},</if>
-            <if test="dataKey!=null">dataKey=#{dataKey},</if>
-            <if test="fileType!=null">fileType=#{fileType},</if>
+            <if test="downloadCount!=null">download_count=#{downloadCount},</if>
+            <if test="dataCategoryId!=null">data_category_id=#{dataCategoryId},</if>
+            <if test="dataClassId!=null">data_class_id=#{dataClassId},</if>
+            <if test="dataKey!=null">data_key=#{dataKey},</if>
+            <if test="fileType!=null">file_type=#{fileType},</if>
             <if test="fileType!=null">eTag=#{eTag},</if>
         </trim>
-        );
+        WHERE data_id=#{dataId}
     </insert>
 </mapper>
