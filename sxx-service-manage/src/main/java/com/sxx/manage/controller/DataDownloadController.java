@@ -3,6 +3,7 @@ package com.sxx.manage.controller;
 import com.sxx.api.data.DataDownloadControllerApi;
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
+import com.sxx.framework.domain.data.response.DataResult;
 import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.service.DataDownloadService;
@@ -87,5 +88,17 @@ public class DataDownloadController implements DataDownloadControllerApi {
     @PostMapping("/updateData")
     public ResponseResult updateData(@RequestParam(value = "file", required = false) MultipartFile file, @RequestPart("dataEntity") DataEntity dataEntity) {
         return dataDownloadService.updateData(file, dataEntity);
+    }
+
+    /**
+     * 根据资料下载数据id查询资料详情
+     *
+     * @param dataId 资料id
+     * @return 结果
+     */
+    @Override
+    @GetMapping("/findDataInfoByDataId")
+    public DataResult findDataInfoByDataId(@RequestParam("dataId") String dataId) {
+        return dataDownloadService.findDataInfoByDataId(dataId);
     }
 }

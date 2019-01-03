@@ -10,8 +10,10 @@ package com.sxx.manage.mapper;
 
 import com.github.pagehelper.Page;
 import com.sxx.framework.domain.data.DataEntity;
-import com.sxx.framework.model.response.ResponseResult;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface DataDownloadMapper {
@@ -54,4 +56,12 @@ public interface DataDownloadMapper {
      * @return 结果
      */
     void updateData(DataEntity dataEntity);
+
+    /**
+     * 根据资料下载数据id查询资料详情
+     * @param dataId 资料id
+     * @return 资料详情
+     */
+    @Select("select * from `data` where data_id = #{dataId}")
+    DataEntity findDataInfoByDataId(@Param("dataId") String dataId);
 }

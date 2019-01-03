@@ -2,6 +2,7 @@ package com.sxx.api.data;
 
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
+import com.sxx.framework.domain.data.response.DataResult;
 import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.response.ResponseResult;
 import io.swagger.annotations.Api;
@@ -68,4 +69,13 @@ public interface DataDownloadControllerApi {
      */
     @ApiOperation("更新资料下载数据")
     ResponseResult updateData(MultipartFile file, DataEntity dataEntity);
+
+    /**
+     * 根据资料下载数据id查询资料详情
+     *
+     * @param dataId 资料id
+     * @return 结果
+     */
+    @ApiOperation("根据资料下载数据id查询资料详情")
+    DataResult findDataInfoByDataId(String dataId);
 }

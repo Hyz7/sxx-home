@@ -1,5 +1,6 @@
 com\sxx\framework\domain\dynamic\ext\DynamicExt.class
 com\sxx\framework\domain\ucenter\request\LoginRequest.class
+com\sxx\framework\domain\response\DownloadResult.class
 com\sxx\framework\domain\dynamic\Dynamic.class
 com\sxx\framework\domain\response\QueryListResult.class
 com\sxx\framework\domain\ucenter\reponse\LoginResult.class

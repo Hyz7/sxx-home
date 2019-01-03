@@ -9,26 +9,19 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
+import com.sxx.framework.domain.data.response.DataResult;
 import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.aws.AwsS3Bucket;
 import com.sxx.framework.model.response.CommonCode;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.mapper.DataDownloadMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
-import software.amazon.awssdk.core.exception.SdkClientException;
-import software.amazon.awssdk.core.sync.ResponseTransformer;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
-import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -166,6 +159,9 @@ public class DataDownloadService {
         // 文件下载,返回文件的presign
         final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
         GeneratePresignedUrlRequest urlRequest = new GeneratePresignedUrlRequest(AwsS3Bucket.BAI_PI_SHU_BUCKET, key);
+        // 设置过期时间1小时
+        Date expiration = new Date(System.currentTimeMillis() + 3600 * 1000);
+        urlRequest.setExpiration(expiration);
         URL url = s3.generatePresignedUrl(urlRequest);
         return new DownloadResult(CommonCode.SUCCESS,url.toString());
     }
@@ -225,6 +221,10 @@ public class DataDownloadService {
             }
 
         }
+        // 修改时间
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String createTime = simpleDateFormat.format(new Date());
+        dataEntity.setCreateTime(createTime);
         dataDownloadMapper.updateData(dataEntity);
         return new ResponseResult(CommonCode.SUCCESS);
     }
@@ -245,5 +245,16 @@ public class DataDownloadService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 根据资料下载数据id查询资料详情
+     *
+     * @param dataId 资料id
+     * @return 结果
+     */
+    public DataResult findDataInfoByDataId(String dataId) {
+        DataEntity dataEntity = dataDownloadMapper.findDataInfoByDataId(dataId);
+        return new DataResult(CommonCode.SUCCESS,dataEntity);
     }
 }
