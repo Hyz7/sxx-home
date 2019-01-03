@@ -14,6 +14,7 @@ com\sxx\framework\domain\page\PageResult.class
 com\sxx\framework\domain\data\DataCategory.class
 com\sxx\framework\domain\dynamic\response\DynamicTypeResponse.class
 com\sxx\framework\domain\ucenter\reponse\AuthCode.class
+com\sxx\framework\domain\data\response\DataResult.class
 com\sxx\framework\domain\dynamic\DynamicType.class
 com\sxx\framework\domain\dynamic\response\DynamicListResult.class
 com\sxx\framework\domain\dynamic\response\DynamicResult.class

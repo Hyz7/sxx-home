@@ -2,7 +2,6 @@ package com.sxx.manage.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.DynamicType;
 import com.sxx.framework.domain.dynamic.ext.DynamicExt;
@@ -14,21 +13,15 @@ import com.sxx.framework.domain.page.PageResult;
 import com.sxx.framework.model.response.CommonCode;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.mapper.DynamicMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import software.amazon.awssdk.core.sync.RequestBody;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -70,7 +63,7 @@ public class DynamicService {
         }
         // 获得新闻咨询列表
         PageHelper.startPage(page,6);
-        List<DynamicExt> newsList = findDynamicList(1L,name);
+        List<Dynamic> newsList = findDynamicList(1L,name);
         if (newsList == null || newsList.size() <= 0){
             newsList = findDynamicList(1L,null);
         }
@@ -80,7 +73,7 @@ public class DynamicService {
         List<Dynamic> industryList = pageList.getResult();
         // 获得学员动态列表
         PageHelper.startPage(page,5);
-        List<DynamicExt> studentList = findDynamicList(3L,null);
+        List<Dynamic> studentList = findDynamicList(3L,null);
         return new DynamicListResult(CommonCode.SUCCESS, newsList,industryList,studentList);
     }
 
@@ -152,7 +145,7 @@ public class DynamicService {
      * @param typeId 分类id
      * @return 列表
      */
-    public List<DynamicExt> findDynamicList(Long typeId,String name){
+    public List<Dynamic> findDynamicList(Long typeId,String name){
         if (typeId == 2L){
             return null;
         }
@@ -162,25 +155,7 @@ public class DynamicService {
         }else {
             pageList = dynamicMapper.findDynamicList(typeId);
         }
-        List<Dynamic> dynamicList = pageList.getResult();
-        List<DynamicExt> dynamicExtList = new ArrayList<>();
-        for (Dynamic dynamic : dynamicList) {
-            DynamicExt dynamicExt = new DynamicExt();
-            // 获得内容
-            String content = dynamic.getContent();
-            // 根据正则表达式去掉html标签
-            if (content != null){
-                content=content.replaceAll("<[.[^<]]*>", "");
-                if (content.length() > 100){
-                    content = content.substring(0,100);
-                }
-            }
-            // 添加内容
-            dynamicExt.setContentKey(content);
-            BeanUtils.copyProperties(dynamic,dynamicExt);
-            dynamicExtList.add(dynamicExt);
-        }
-        return dynamicExtList;
+        return pageList.getResult();
     }
 
     /**

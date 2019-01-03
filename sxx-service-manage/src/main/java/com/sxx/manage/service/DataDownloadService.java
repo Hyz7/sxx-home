@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -60,7 +61,8 @@ public class DataDownloadService {
         }
         // 设置行业类别
         if (dataEntity.getDownloadCount() == null) {
-            dataEntity.setDownloadCount(1000);
+            Integer randomDownloadCount = (int) (Math.random() * 1000) + 201;
+            dataEntity.setDownloadCount(randomDownloadCount);
         }
 
         // 设置时间
@@ -129,21 +131,7 @@ public class DataDownloadService {
         PageHelper.startPage(page, size);
         Page<DataEntity> queryData = dataDownloadMapper.findDataList(dataClassName, dataCategoryName, name, page, size);
         List<DataEntity> entityList = queryData.getResult();
-        List<DataEntity> result = new ArrayList<>();
-
-        for (DataEntity dataEntity : entityList) {
-            String content = dataEntity.getDataDesc();
-            // 根据正则表达式去掉html标签
-            if (content != null) {
-                content = content.replaceAll("<[.[^<]]*>", "");
-                if (content.length() > 100) {
-                    content = content.substring(0, 100);
-                }
-            }
-            dataEntity.setDataDesc(content);
-            result.add(dataEntity);
-        }
-        return new DataEntityResult(CommonCode.SUCCESS, result);
+        return new DataEntityResult(CommonCode.SUCCESS, entityList);
     }
 
     /**
@@ -163,7 +151,19 @@ public class DataDownloadService {
         Date expiration = new Date(System.currentTimeMillis() + 3600 * 1000);
         urlRequest.setExpiration(expiration);
         URL url = s3.generatePresignedUrl(urlRequest);
+        // 下载次数增加
+        addDownloadCount(dataId);
         return new DownloadResult(CommonCode.SUCCESS,url.toString());
+    }
+
+    /**
+     * 下载成功后增加下载次数
+     * @param dataId 资料id
+     */
+    private void addDownloadCount(Integer dataId) {
+        DataEntity dataEntity = dataDownloadMapper.findByDataId(dataId);
+        dataEntity.setDownloadCount(dataEntity.getDownloadCount() + 1);
+        dataDownloadMapper.updateData(dataEntity);
     }
 
     /**
