@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class DynamicController implements DynamicControllerApi {
     @Autowired
     private DynamicService dynamicService;
+
     /**
      * 展示思学行动态列表
      *
@@ -38,18 +39,19 @@ public class DynamicController implements DynamicControllerApi {
     /**
      * 展示思学行动态信息
      *
-     * @param page   当前页数
-     * @param size   当前页记录数
+     * @param page 当前页数
+     * @param size 当前页记录数
      * @return 结果集
      */
     @Override
     @GetMapping("/showNewsInfoList")
-    public DynamicListResult showNewsInfoList(String name,Integer page, Integer size) {
-        return dynamicService.showNewsInfoList(name,page,size);
+    public DynamicListResult showNewsInfoList(String name, Integer page, Integer size) {
+        return dynamicService.showNewsInfoList(name, page, size);
     }
 
     /**
      * 添加思学行动态信息
+     *
      * @param dynamic 思学行动态信息
      * @return 结果集
      */
@@ -58,8 +60,10 @@ public class DynamicController implements DynamicControllerApi {
     public ResponseResult addDynamic(@RequestBody Dynamic dynamic) {
         return dynamicService.addDynamic(dynamic);
     }
+
     /**
      * 删除思学行动态信息
+     *
      * @param id 信息id
      * @return 结果集
      */
@@ -68,8 +72,10 @@ public class DynamicController implements DynamicControllerApi {
     public ResponseResult delDynamic(Long[] id) {
         return dynamicService.delDynamic(id);
     }
+
     /**
      * 根据id查看编辑思学行动态信息
+     *
      * @param id 信息id
      * @return 思学行动态信息
      */
@@ -78,8 +84,10 @@ public class DynamicController implements DynamicControllerApi {
     public DynamicResult queryDynamic(Long id) {
         return dynamicService.queryDynamic(id);
     }
+
     /**
      * 更新修改思学行动态信息
+     *
      * @param dynamic 动态信息
      * @return 结果集
      */
@@ -90,7 +98,9 @@ public class DynamicController implements DynamicControllerApi {
     }
 
     /**
+     * 根据分类id分页模糊查询动态信息
      *
+     * @param name   模糊查询标题名称
      * @param typeId 分类id
      * @param page   当前页数
      * @param size   当前页记录数
@@ -98,8 +108,9 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @GetMapping("/showNewsListByTypeId")
-    public DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size) {
-        return dynamicService.showNewsListByTypeId(typeId, page, size);
+    public DynamicListResult2 showNewsListByTypeId(String name, Long typeId, Integer page, Integer size) {
+        return dynamicService.showNewsListByTypeId(name, typeId, page, size);
     }
+
 
 }

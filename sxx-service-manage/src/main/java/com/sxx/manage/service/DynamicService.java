@@ -50,31 +50,31 @@ public class DynamicService {
     /**
      * 展示思学行动态信息
      *
-     * @param page   当前页数
-     * @param size   当前页记录数
+     * @param page 当前页数
+     * @param size 当前页记录数
      * @return 结果集
      */
-    public DynamicListResult showNewsInfoList(String name,Integer page, Integer size) {
-        if (page == null){
+    public DynamicListResult showNewsInfoList(String name, Integer page, Integer size) {
+        if (page == null) {
             page = 1;
         }
-        if (size == null){
+        if (size == null) {
             size = 5;
         }
         // 获得新闻咨询列表
-        PageHelper.startPage(page,6);
-        List<Dynamic> newsList = findDynamicList(1L,name);
-        if (newsList == null || newsList.size() <= 0){
-            newsList = findDynamicList(1L,null);
+        PageHelper.startPage(page, 6);
+        List<Dynamic> newsList = findDynamicList(1L, name);
+        if (newsList == null || newsList.size() <= 0) {
+            newsList = findDynamicList(1L, null);
         }
         // 获得行业动态列表
-        PageHelper.startPage(page,10);
+        PageHelper.startPage(page, 10);
         Page<Dynamic> pageList = dynamicMapper.findDynamicList(2L);
         List<Dynamic> industryList = pageList.getResult();
         // 获得学员动态列表
-        PageHelper.startPage(page,5);
-        List<Dynamic> studentList = findDynamicList(3L,null);
-        return new DynamicListResult(CommonCode.SUCCESS, newsList,industryList,studentList);
+        PageHelper.startPage(page, 5);
+        List<Dynamic> studentList = findDynamicList(3L, null);
+        return new DynamicListResult(CommonCode.SUCCESS, newsList, industryList, studentList);
     }
 
     /**
@@ -87,7 +87,7 @@ public class DynamicService {
         if (dynamic == null || dynamic.getTypeId() == null) {
             return new ResponseResult(CommonCode.FAIL);
         }
-        if (dynamic.getCreateTime() == null){
+        if (dynamic.getCreateTime() == null) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String createTime = simpleDateFormat.format(new Date());
             dynamic.setCreateTime(createTime);
@@ -142,56 +142,51 @@ public class DynamicService {
 
     /**
      * 根据分类id获得列表
+     *
      * @param typeId 分类id
      * @return 列表
      */
-    public List<Dynamic> findDynamicList(Long typeId,String name){
-        if (typeId == 2L){
+    public List<Dynamic> findDynamicList(Long typeId, String name) {
+        if (typeId == 2L) {
             return null;
         }
         Page<Dynamic> pageList;
-        if (typeId == 1L){
-            pageList = dynamicMapper.findNewsList(typeId,name);
-        }else {
+        if (typeId == 1L) {
+            pageList = dynamicMapper.findNewsList(typeId, name);
+        } else {
             pageList = dynamicMapper.findDynamicList(typeId);
         }
         return pageList.getResult();
     }
 
     /**
+     * 根据分类id分页模糊查询动态信息
      *
+     * @param name   模糊查询标题名称
      * @param typeId 分类id
      * @param page   当前页数
      * @param size   当前页记录数
      * @return 结果集
      */
-    public DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size) {
+    public DynamicListResult2 showNewsListByTypeId(String name, Long typeId, Integer page, Integer size) {
         PageResult pageResult = new PageResult();
-        if (typeId == null){
-            return new DynamicListResult2(CommonCode.FAIL,null,pageResult);
+        if (typeId == null) {
+            return new DynamicListResult2(CommonCode.FAIL, null, pageResult);
         }
-        if (page == null){
+        if (page == null) {
             page = 1;
         }
-        if (size == null){
+        if (size == null) {
             size = 5;
         }
-        PageHelper.startPage(page,size);
-        Page<Dynamic> dynamicPage = dynamicMapper.findDynamicListByTypeId(typeId);
+        PageHelper.startPage(page, size);
+        Page<Dynamic> dynamicPage = dynamicMapper.findDynamicListByTypeId(name,typeId);
         pageResult.setTotal(dynamicPage.getTotal());
         List<Dynamic> dynamicList = dynamicPage.getResult();
-        List<Dynamic> newList = new ArrayList<>();
-        for (Dynamic dynamic : dynamicList) {
-            String content = dynamic.getContent();
-            dynamic.setHtml(content);
-            if (content!=null){
-                content=content.replaceAll("<[.[^<]]*>", "");
-                dynamic.setContent(content);
-            }
-            newList.add(dynamic);
+        if (dynamicList == null || dynamicList.size() <= 0){
+            dynamicList = dynamicMapper.findDynamicList(typeId);
         }
-        return new DynamicListResult2(CommonCode.SUCCESS,newList,pageResult);
-
+        return new DynamicListResult2(CommonCode.SUCCESS, dynamicList, pageResult);
     }
 
 }

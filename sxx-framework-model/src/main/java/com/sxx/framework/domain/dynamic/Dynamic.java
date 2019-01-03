@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
@@ -34,5 +33,7 @@ public class Dynamic extends BaseDomain {
     private String typeName;
     @ApiModelProperty("带标签的")
     private String html;
+    @ApiModelProperty("外链")
+    private String url;
 
 }

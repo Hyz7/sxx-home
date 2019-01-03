@@ -61,12 +61,12 @@ public interface DynamicMapper {
     void update(Dynamic dynamic);
 
     /**
-     * 根据分类id查询动态信息
+     * 根据分类id分页模糊查询动态信息
+     * @param name   模糊查询标题名称
      * @param typeId 分类id
      * @return 结果
      */
-    @Select("select d.*,t.typeName from t_dynamic d, t_type t where d.typeId = t.typeId and t.typeId = #{typeId} ORDER BY createTime DESC")
-    Page<Dynamic> findDynamicListByTypeId(@Param("typeId") String typeId);
+    Page<Dynamic> findDynamicListByTypeId(@Param("name") String name,@Param("typeId") Long typeId);
 
     /**
      * 分页模糊查询新闻列表

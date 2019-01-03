@@ -30,15 +30,16 @@ public interface DynamicControllerApi {
     /**
      * 展示思学行动态信息
      *
-     * @param page   当前页数
-     * @param size   当前页记录数
+     * @param page 当前页数
+     * @param size 当前页记录数
      * @return 结果集
      */
     @ApiOperation("展示思学行动态信息")
-    DynamicListResult showNewsInfoList(String name,Integer page,Integer size);
+    DynamicListResult showNewsInfoList(String name, Integer page, Integer size);
 
     /**
      * 添加思学行动态信息
+     *
      * @param dynamic 思学行动态信息
      * @return 结果集
      */
@@ -47,6 +48,7 @@ public interface DynamicControllerApi {
 
     /**
      * 删除思学行动态信息
+     *
      * @param id 信息id
      * @return 结果集
      */
@@ -55,6 +57,7 @@ public interface DynamicControllerApi {
 
     /**
      * 根据id查看编辑思学行动态信息
+     *
      * @param id 信息id
      * @return 思学行动态信息
      */
@@ -63,6 +66,7 @@ public interface DynamicControllerApi {
 
     /**
      * 更新修改思学行动态信息
+     *
      * @param dynamic 动态信息
      * @return 结果集
      */
@@ -70,14 +74,16 @@ public interface DynamicControllerApi {
     ResponseResult updateDynamic(Dynamic dynamic);
 
     /**
+     * 根据分类id分页模糊查询动态信息
      *
+     * @param name   模糊查询标题名称
      * @param typeId 分类id
      * @param page   当前页数
      * @param size   当前页记录数
      * @return 结果集
      */
-    @ApiOperation("根据分类id查询动态信息")
-    DynamicListResult2 showNewsListByTypeId(String typeId, Integer page, Integer size);
+    @ApiOperation("根据分类id分页模糊查询动态信息")
+    DynamicListResult2 showNewsListByTypeId(String name, Long typeId, Integer page, Integer size);
 
 
 }

@@ -40,4 +40,20 @@
         ORDER BY
 	  d.createTime DESC
     </select>
+
+    <select id="findDynamicListByTypeId" resultType="com.sxx.framework.domain.dynamic.Dynamic">
+    SELECT
+	d.*, t.typeName
+    FROM
+	t_dynamic d,
+	t_type t
+    WHERE
+	d.typeId = t.typeId
+    AND t.typeId = #{typeId}
+    <if test="name != null and name != '' and name != 'undefined'">
+        AND d.title LIKE CONCAT(CONCAT('%',#{name},'%'))
+    </if>
+    ORDER BY
+	createTime DESC
+    </select>
 </mapper>
