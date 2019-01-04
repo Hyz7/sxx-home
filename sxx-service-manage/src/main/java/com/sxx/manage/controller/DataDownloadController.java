@@ -51,7 +51,7 @@ public class DataDownloadController implements DataDownloadControllerApi {
     @GetMapping("/findDataList")
     public DataEntityResult findDataList(String dataClassName, String dataCategoryName, String name,
                                          @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                         @RequestParam(value = "page", defaultValue = "5") Integer size) {
+                                         @RequestParam(value = "size", defaultValue = "5") Integer size) {
         return dataDownloadService.findDataList(dataClassName, dataCategoryName, name, page, size);
     }
 

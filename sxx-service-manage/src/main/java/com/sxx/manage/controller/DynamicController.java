@@ -47,7 +47,7 @@ public class DynamicController implements DynamicControllerApi {
     @GetMapping("/showNewsInfoList")
     public DynamicListResult showNewsInfoList(String name,
                                               @RequestParam(value = "page", defaultValue = "1")Integer page,
-                                              @RequestParam(value = "page", defaultValue = "5")Integer size) {
+                                              @RequestParam(value = "size", defaultValue = "5")Integer size) {
         return dynamicService.showNewsInfoList(name, page, size);
     }
 
@@ -112,7 +112,7 @@ public class DynamicController implements DynamicControllerApi {
     @GetMapping("/showNewsListByTypeId")
     public DynamicListResult2 showNewsListByTypeId(String name,@RequestParam("typeId") Long typeId,
                                                    @RequestParam(value = "page", defaultValue = "1")Integer page,
-                                                   @RequestParam(value = "page", defaultValue = "5")Integer size) {
+                                                   @RequestParam(value = "size", defaultValue = "5")Integer size) {
         return dynamicService.showNewsListByTypeId(name, typeId, page, size);
     }
 
