@@ -4,7 +4,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sxx.framework.domain.dynamic.Dynamic;
 import com.sxx.framework.domain.dynamic.DynamicType;
-import com.sxx.framework.domain.dynamic.ext.DynamicExt;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult;
 import com.sxx.framework.domain.dynamic.response.DynamicListResult2;
 import com.sxx.framework.domain.dynamic.response.DynamicResult;
@@ -13,13 +12,11 @@ import com.sxx.framework.domain.page.PageResult;
 import com.sxx.framework.model.response.CommonCode;
 import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.manage.mapper.DynamicMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -55,12 +52,6 @@ public class DynamicService {
      * @return 结果集
      */
     public DynamicListResult showNewsInfoList(String name, Integer page, Integer size) {
-        if (page == null) {
-            page = 1;
-        }
-        if (size == null) {
-            size = 5;
-        }
         // 获得新闻咨询列表
         PageHelper.startPage(page, 6);
         List<Dynamic> newsList = findDynamicList(1L, name);
@@ -103,9 +94,6 @@ public class DynamicService {
      * @return 结果集
      */
     public ResponseResult delDynamic(Long[] ids) {
-        if (ids == null) {
-            return new ResponseResult(CommonCode.FAIL);
-        }
         for (Long id : ids) {
             dynamicMapper.delete(id);
         }
@@ -119,9 +107,6 @@ public class DynamicService {
      * @return 思学行动态信息
      */
     public DynamicResult queryDynamic(Long id) {
-        if (id == null) {
-            return new DynamicResult(CommonCode.FAIL, null);
-        }
         Dynamic dynamic = dynamicMapper.query(id);
         return new DynamicResult(CommonCode.SUCCESS, dynamic);
     }
@@ -169,18 +154,9 @@ public class DynamicService {
      * @return 结果集
      */
     public DynamicListResult2 showNewsListByTypeId(String name, Long typeId, Integer page, Integer size) {
-        PageResult pageResult = new PageResult();
-        if (typeId == null) {
-            return new DynamicListResult2(CommonCode.FAIL, null, pageResult);
-        }
-        if (page == null) {
-            page = 1;
-        }
-        if (size == null) {
-            size = 5;
-        }
         PageHelper.startPage(page, size);
         Page<Dynamic> dynamicPage = dynamicMapper.findDynamicListByTypeId(name,typeId);
+        PageResult pageResult = new PageResult();
         pageResult.setTotal(dynamicPage.getTotal());
         List<Dynamic> dynamicList = dynamicPage.getResult();
         if (dynamicList == null || dynamicList.size() <= 0){

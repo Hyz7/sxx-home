@@ -45,7 +45,9 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @GetMapping("/showNewsInfoList")
-    public DynamicListResult showNewsInfoList(String name, Integer page, Integer size) {
+    public DynamicListResult showNewsInfoList(String name,
+                                              @RequestParam(value = "page", defaultValue = "1")Integer page,
+                                              @RequestParam(value = "page", defaultValue = "5")Integer size) {
         return dynamicService.showNewsInfoList(name, page, size);
     }
 
@@ -69,7 +71,7 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @DeleteMapping("/delDynamic")
-    public ResponseResult delDynamic(Long[] id) {
+    public ResponseResult delDynamic(@RequestParam("id") Long[] id) {
         return dynamicService.delDynamic(id);
     }
 
@@ -81,7 +83,7 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @GetMapping("/queryDynamic")
-    public DynamicResult queryDynamic(Long id) {
+    public DynamicResult queryDynamic(@RequestParam("id") Long id) {
         return dynamicService.queryDynamic(id);
     }
 
@@ -108,7 +110,9 @@ public class DynamicController implements DynamicControllerApi {
      */
     @Override
     @GetMapping("/showNewsListByTypeId")
-    public DynamicListResult2 showNewsListByTypeId(String name, Long typeId, Integer page, Integer size) {
+    public DynamicListResult2 showNewsListByTypeId(String name,@RequestParam("typeId") Long typeId,
+                                                   @RequestParam(value = "page", defaultValue = "1")Integer page,
+                                                   @RequestParam(value = "page", defaultValue = "5")Integer size) {
         return dynamicService.showNewsListByTypeId(name, typeId, page, size);
     }
 

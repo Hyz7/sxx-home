@@ -121,12 +121,6 @@ public class DataDownloadService {
      * @return 结果
      */
     public DataEntityResult findDataList(String dataClassName, String dataCategoryName, String name, Integer page, Integer size) {
-        if (page == null) {
-            page = 1;
-        }
-        if (size == null) {
-            size = 5;
-        }
         PageHelper.startPage(page, size);
         Page<DataEntity> queryData = dataDownloadMapper.findDataList(dataClassName, dataCategoryName, name, page, size);
         List<DataEntity> entityList = queryData.getResult();

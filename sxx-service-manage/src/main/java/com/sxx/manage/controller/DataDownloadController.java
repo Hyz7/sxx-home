@@ -49,7 +49,9 @@ public class DataDownloadController implements DataDownloadControllerApi {
      */
     @Override
     @GetMapping("/findDataList")
-    public DataEntityResult findDataList(String dataClassName, String dataCategoryName, String name, Integer page, Integer size) {
+    public DataEntityResult findDataList(String dataClassName, String dataCategoryName, String name,
+                                         @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                         @RequestParam(value = "page", defaultValue = "5") Integer size) {
         return dataDownloadService.findDataList(dataClassName, dataCategoryName, name, page, size);
     }
 
@@ -61,7 +63,7 @@ public class DataDownloadController implements DataDownloadControllerApi {
      */
     @Override
     @GetMapping("/downloadData")
-    public DownloadResult downloadData(Integer dataId) {
+    public DownloadResult downloadData(@RequestParam("dataId") Integer dataId) {
         return dataDownloadService.downloadData(dataId);
     }
 
@@ -73,7 +75,7 @@ public class DataDownloadController implements DataDownloadControllerApi {
      */
     @Override
     @DeleteMapping("/deleteData")
-    public ResponseResult deleteData(Integer[] ids) {
+    public ResponseResult deleteData(@RequestParam("ids") Integer[] ids) {
         return dataDownloadService.deleteData(ids);
     }
 
