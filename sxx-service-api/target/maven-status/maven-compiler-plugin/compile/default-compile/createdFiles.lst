@@ -1,5 +1,0 @@
-com\sxx\api\dynamic\DynamicControllerApi.class
-com\sxx\api\config\CorsConfiguration.class
-com\sxx\api\auth\AuthControllerApi.class
-com\sxx\api\data\DataDownloadControllerApi.class
-com\sxx\api\config\Swagger2Configuration.class

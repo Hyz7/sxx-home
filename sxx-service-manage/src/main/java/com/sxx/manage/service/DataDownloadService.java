@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.sxx.framework.domain.data.DataEntity;
 import com.sxx.framework.domain.data.response.DataEntityResult;
 import com.sxx.framework.domain.data.response.DataResult;
+import com.sxx.framework.domain.page.PageResult;
 import com.sxx.framework.domain.response.DownloadResult;
 import com.sxx.framework.model.aws.AwsS3Bucket;
 import com.sxx.framework.model.response.CommonCode;
@@ -23,10 +24,8 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -131,7 +130,9 @@ public class DataDownloadService {
         PageHelper.startPage(page, size);
         Page<DataEntity> queryData = dataDownloadMapper.findDataList(dataClassName, dataCategoryName, name, page, size);
         List<DataEntity> entityList = queryData.getResult();
-        return new DataEntityResult(CommonCode.SUCCESS, entityList);
+        PageResult pageResult = new PageResult();
+        pageResult.setTotal(queryData.getTotal());
+        return new DataEntityResult(CommonCode.SUCCESS, entityList,pageResult);
     }
 
     /**
