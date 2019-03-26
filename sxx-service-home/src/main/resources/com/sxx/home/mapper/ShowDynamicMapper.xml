@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxx.home.mapper.ShowDynamicMapper">
+    <select id="findNewsList1" resultType="com.sxx.framework.domain.dynamic.Dynamic">
+        SELECT
+        d.*, t.typeName
+        FROM
+        t_dynamic d
+        INNER JOIN t_type t ON d.typeId = t.typeId
+        AND d.typeId = #{typeId}
+        <if test="name != null and name != '' and name != 'undefined'">
+            AND d.title LIKE CONCAT(CONCAT('%',#{name},'%'))
+        </if>
+        ORDER BY
+	  d.createTime DESC
+    </select>
+    <select id="findDynamicList" resultType="com.sxx.framework.domain.dynamic.Dynamic">
+        SELECT
+        d.*, t.typeName
+        FROM
+        t_dynamic d
+        INNER JOIN t_type t ON d.typeId = t.typeId
+        AND d.typeId = #{typeId}
+        ORDER BY
+	  d.createTime DESC
+    </select>
+
+    <select id="findDynamicListByTypeId" resultType="com.sxx.framework.domain.dynamic.Dynamic">
+    SELECT
+	d.*, t.typeName
+    FROM
+	t_dynamic d,
+	t_type t
+    WHERE
+	d.typeId = t.typeId
+    AND t.typeId = #{typeId}
+    <if test="name != null and name != '' and name != 'undefined'">
+        AND d.title LIKE CONCAT(CONCAT('%',#{name},'%'))
+    </if>
+    ORDER BY
+	createTime DESC
+    </select>
+</mapper>

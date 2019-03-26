@@ -1,0 +1,80 @@
+.news-detail{
+    margin-top: 2.4rem;
+    width: 100%;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+}
+.news-detail .title{
+    color: #333333;
+    font-size: 0.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+.news-detail .title .title-sub{
+    color: #333333;
+    font-size: 0.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+.news-detail .title .time{
+    color: #999999;
+    font-size: 0.2rem;
+    margin-left: 2.8rem;
+}
+.news-detail .img{
+    width: 95%;
+    height: 3rem;
+    display: block;
+    margin: 0 auto;
+}
+.news-detail img{
+    width: 95%;
+    height: 3rem;
+    display: block;
+    margin: 0 auto;
+}
+.news-detail .content{
+    margin-top: 0.67rem;
+    min-height: 3rem;
+}
+.news-detail .content>p>img{
+    margin: 0.1rem auto;
+    width: 5.51rem;
+}
+.news-detail .content .point{
+    font-weight: bold;
+}
+.news-detail .func{
+    margin: 0.5rem auto;
+    /*margin-top: 0.7rem;*/
+    /*margin-bottom: 0.5rem;*/
+    width: 3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    /*border: 1px solid rebeccapurple;*/
+}
+.news-detail .func .like{
+    width: 0.6rem;
+    height: 0.6rem;
+    border: 1px solid #b5b5b5;
+    -moz-border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    border-radius: 0.3rem;
+}
+.news-detail .func .func-btn{
+    display: block;
+    font-size: 0.24rem;
+    width: 1.2rem;
+    height: 0.4rem;
+    border: 0.01rem solid #4e8cee;
+    text-align: center;
+    line-height: 0.4rem;
+}
+.news-detail .func .previous{
+    /*margin-left: 3.7rem;
+    margin-right: 0.2rem;*/
+    margin-right: 0.2rem;
+}
+.news-detail .func .next{
+    font-size: 0.24rem;
+}

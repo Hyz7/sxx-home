@@ -1,0 +1,85 @@
+.course{
+    margin-top:2.4rem;
+    width: 100%;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+}
+.course .title{
+    margin-top: 0.3rem;
+    text-align: center;
+    font-size: 0.3rem;
+    color: #333333;
+}
+.course .title-sub{
+    margin-top: 0.2rem;
+    margin-bottom: 0.3rem;
+    text-align: center;
+    font-size: 0.2rem;
+    color: #666666;
+}
+.course .pic{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.course .pic .box{
+    /*flex: 1;*/
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+    width: 3.31rem;
+    height: 2.41rem;
+    box-shadow: 0rem 0rem 0.18rem rgba(0,0,0,.20);
+}
+.course .pic .box2{
+    /*flex: 1;*/
+    padding-left: 0.4rem;
+    margin-bottom: 0.4rem;
+    width: 3.31rem;
+    height: 2.41rem;
+    box-shadow: 0rem 0rem 0.18rem rgba(0,0,0,.20);
+}
+.course .pic .box .tip1{
+    margin-left: 0.1rem;
+    font-size: 0.24rem;
+    line-height: 0.24rem;
+    margin-top: 0.05rem;
+}
+.course .pic .box .tip2{
+    margin-top: 0.05rem;
+    margin-left: 0.1rem;
+    font-size: 0.14rem;
+    line-height: 0.24rem;
+    width: 3.3rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 0.1rem;
+}
+.course .pic .box .tip3{
+    margin-top: 0.1rem;
+    font-size: 0.18rem;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 0.1rem;
+    color: #ff111e;
+}
+.course .pic .box .tip3 .tip5{
+    margin-left: 0.1rem;
+    text-align: center;
+    font-size: 0.14rem;
+    color: #cccccc;
+
+}
+.course .pic .box .img{
+    display: block;
+    margin: 0 auto;
+    width: 3.31rem;
+    height: 1.38rem;
+    background-color: whitesmoke;
+    /*border: 1px solid red;*/
+}
+.course .more{
+    text-align: center;
+    font-size: 0.2rem;
+    margin-bottom: 0.4rem;
+    color: #999999;
+}

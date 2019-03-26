@@ -1,0 +1,74 @@
+.invite-container{
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+    background-color: #F0F0F0;
+    margin-top: 2.4rem;
+}
+.invite-container>.title{
+    font-size: 0.3rem;
+    color: #333;
+    text-align: center;
+}
+.invite-container>.desc{
+    font-size: 0.2rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+.invite-container .invite-list.avtiveH{
+    height: 9rem;
+    transition: all 500ms;
+}
+.invite-container .invite-list{
+    transition: all 500ms;
+    color: #fff;
+    box-sizing: border-box;
+    position: relative;
+    height:0.6rem;
+    margin-bottom: 0.1rem;
+    overflow: hidden;
+}
+.invite-container .invite-list>.title{
+    width: 100%;
+    height: 0.6rem;
+    padding:0 0.3rem;
+    background-color: #4E8CEE;
+    line-height: 0.6rem;
+    position: relative;
+}
+.invite-container .invite-list>.title i.active{
+    transition: all 500ms;
+    transform:rotate(90deg);
+}
+.invite-container .invite-list>.title i{
+    transition: all 500ms;
+    position: absolute;
+    top: 0.15rem;
+    right: 0.2rem;
+    background: url("../../images/invite/right.png") no-repeat center center;
+    width: 0.15rem;
+    height: 0.3rem;
+    background-size: 0.15rem ;
+    display: block;
+}
+.invite-container .list-content{
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0.6rem;
+    left: 0;
+    background-color: #fff;
+    height: 7.8rem;
+    width: 100%;
+}
+.invite-container .list-content>span{
+    font-size: 0.2rem;
+    color: #333;
+    margin: 0.1rem 0;
+    display: block;
+}
+.invite-container .list-content .text{
+    font-size: 0.2rem;
+    line-height: 0.3rem;
+    color: #333;
+}

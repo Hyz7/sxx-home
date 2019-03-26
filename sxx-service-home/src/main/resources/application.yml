@@ -1,0 +1,22 @@
+server:
+  port: 31000
+  ssl:
+    key-store: classpath:sxx.pfx
+    key-store-password: tK75MMVp
+    key-store-type: PKCS12
+    key-alias: alias
+spring:
+  application:
+    name: sxx-service-home
+  datasource:
+    url: jdbc:mysql://52.83.149.232:3306/sxx?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: sxxpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true # 开启驼峰命名转换法
+pagehelper:
+  helper-dialect: mysql

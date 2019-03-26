@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Data
 @ToString
 @Table(name="t_dynamic")
-public class Dynamic extends BaseDomain {
+public class Dynamic extends BaseDomain implements Serializable {
     @ApiModelProperty("分类id")
     private String typeId;
     @ApiModelProperty("标题")

@@ -1,0 +1,102 @@
+.server-container{
+    margin-top: 2.4rem;
+    width: 100%;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+.server-container .title{
+    margin-bottom: 0.2rem;
+    font-size: 0.3rem;
+    text-align: center;
+    color: #333333;
+}
+.server-container .desc{
+    font-size: 0.2rem;
+    text-align: center;
+    color: #666666;
+}
+.server-container .content-box{
+    padding-bottom: 0.8rem;
+}
+.server-container .content-box .img{
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    width: 7rem;
+    height: 2.8rem;
+}
+.server-container .content-box .img3{
+    margin-bottom: 0.1rem;
+    width: 7rem;
+    height: 2.8rem;
+}
+.server-container .content-box .description{
+    margin-left: 0.4rem;
+    margin-bottom: 0.3rem;
+    width: 6rem;
+    text-align: center;
+    font-size: 0.24rem;
+    color: #333333;
+}
+.server-container .content-box .description-ext{
+    margin-bottom: 0.3rem;
+    text-align: center;
+    font-size: 0.24rem;
+    color: #333333;
+}
+.server-container .content-box .list-box .box{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 0.25rem;
+}
+.server-container .content-box .list-box .box .img2{
+    width: 0.5rem;
+    height: 0.4rem;
+}
+.server-container .content-box .list-box .name{
+    white-space:nowrap;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    font-size: 0.22rem;
+    color: #333333;
+    font-weight: bold;
+}
+.server-container .content-box .list-box .text{
+    font-size: 0.22rem;
+    color: #333333;
+}
+
+.server-container .out-content{
+    position: relative;
+}
+.server-container .contact{
+    position: absolute;
+    width: 4.8rem;
+    right: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 0.25rem;
+}
+.server-container .contact .text{
+    background-color: #4e8cee;
+    border-radius: 0.25rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    width: 1.5rem!important;
+    white-space:nowrap;
+    text-align: center;
+    font-size: 0.24rem;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.server-container .contact .phone{
+    white-space:nowrap;
+    font-size: 0.20rem;
+    margin-top: 0.10rem;
+    padding-left: 0.2rem;
+    color: #4e8cee;
+}
+.server-container .blank{
+    padding-top: 0.8rem;
+}

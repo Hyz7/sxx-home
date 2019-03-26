@@ -1,0 +1,36 @@
+.hot{
+    margin-top: 2.4rem;
+    width: 100%;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+}
+.hot .title{
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    text-align: center;
+    font-size: 0.3rem;
+    color: #333333;
+}
+.hot .pic{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 0.5rem;
+}
+.hot .pic .box{
+    flex: 1;
+}
+.hot .pic .box .img1{
+    display: block;
+    margin: 0 auto;
+    width: 0.8rem;
+    height: 0.8rem;
+}
+.hot .pic .box .content{
+    text-align: center;
+    margin-top: 0.15rem;
+    font-size: 0.34rem;
+    color: #4e8cee;
+}
+.hot .blank{
+    margin-top: 0.8rem;
+}

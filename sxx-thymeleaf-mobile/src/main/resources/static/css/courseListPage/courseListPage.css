@@ -1,0 +1,140 @@
+.courseListPage{
+    margin-top: 2.4rem;
+    width: 100%;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+}
+.courseListPage .video {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.courseListPage .video .watch{
+    width: 4.2rem;
+    height: 3rem;
+}
+.courseListPage .video .content{
+    padding-left: 0.4rem;
+}
+.courseListPage .video .content .title{
+    margin-top: 0.34rem;
+    margin-bottom: 0.3rem;
+    width: 1rem;
+    height: 0.42rem;
+    border: 0.01rem solid #4e8cee;
+    font-size: 0.2rem;
+    text-align: center;
+    line-height: 0.42rem;
+    color: #4e8cee;
+}
+.courseListPage .video .content .box{
+    margin-bottom: 0.4rem;
+}
+.courseListPage .video .content .box .teacher{
+    font-size: 0.2rem;
+    color: #666666;
+}
+.courseListPage .video .content .box .count{
+    font-size: 0.2rem;
+    color: #666666;
+}
+.courseListPage .video .content .time{
+    font-size: 0.18rem;
+    color: #999999;
+}
+.courseListPage .sale{
+    margin-bottom: 0.2rem;
+}
+.courseListPage .sale .limit{
+    height: 0.7rem;
+    background-color: #4e8cee;
+}
+.courseListPage .sale .remain{
+    height: 0.52rem;
+    background-color: #ffffff;
+}
+.courseListPage .sale .limit .saleTime{
+    margin-left: 0.2rem;
+    font-size: 0.18rem;
+    font-family: "微软雅黑";
+    color: #ffffff;
+    line-height: 0.7rem;
+}
+.courseListPage .sale .limit .saleTime .saleCount{
+    margin-left: 0.7rem;
+    font-size: 0.18rem;
+    font-family: "微软雅黑";
+    color: #ffffff;
+    line-height: 0.7rem;
+}
+.courseListPage .sale .remain .remainContent {
+    margin-left: 0.2rem;
+    font-size: 0.20rem;
+    font-family: "微软雅黑";
+    color: #999999;
+    line-height: 0.52rem;
+}
+.courseListPage .sale .remain .money {
+    margin-left: 0.2rem;
+    font-size: 0.24rem;
+    font-family: "微软雅黑";
+    color: #ff111e;
+    line-height: 0.52rem;
+}
+.courseListPage .sale .remain .remainContent .money2 {
+    margin-left: 0.2rem;
+    font-size: 0.16rem;
+    font-family: "微软雅黑";
+    color: #999999;
+    line-height: 0.52rem;
+}
+.courseListPage .category{
+    background-color: #fff;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 0.05rem;
+}
+.courseListPage   .category .category-btn{
+    margin-right: 0.05rem;
+    flex: 1;
+    background-color: #fff;
+    color: #000;
+    line-height: 0.5rem;
+    height: 0.5rem;
+    font-size: 0.3rem;
+    text-align: center;
+}
+.courseListPage  .category .category-btn:hover{
+    border-bottom: 0.02rem solid #4e8cee;
+    box-shadow: 0 0 6rem rgba(0,0,0,0.16);
+}
+.courseListPage .introduceContent{
+    padding-left: 0.4rem;
+    font-size: 0.24rem;
+    font-family: "微软雅黑";
+    background-color: #ffffff;
+    height: 4.4rem;
+    display: none;
+}
+.courseListPage .introduceContent.active{
+    display: block;
+}
+.courseListPage .box .introduceContent .head{
+    margin: 0 auto;
+    padding-top: 0.2rem;
+    display: block;
+    width: 1.6rem;
+    height: 1.8rem;
+}
+.courseListPage .box .introduceContent .name{
+    font-size: 0.26rem;
+    color: #333333;
+    text-align: center;
+}
+.courseListPage .box .introduceContent .teachIntro{
+    font-size: 0.24rem;
+    color: #666666;
+    text-align: center;
+    margin-top: 0.2rem;
+    margin-right: 0.4rem;
+}

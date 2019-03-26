@@ -1,0 +1,97 @@
+.teaching{
+    margin-top: 2.4rem;
+    width: 100%;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+.teaching .title{
+    margin-top: 0.1rem;
+    text-align: center;
+    font-size: 0.3rem;
+    color: #333333;
+}
+.teaching .title .title-sub{
+    margin-bottom: 0.3rem;
+    text-align: center;
+    font-size: 0.2rem;
+    color: #666666;
+}
+.teaching .case{
+    display: block;
+    margin-bottom: 0.2rem;
+    width: 7rem;
+    height: 6rem;
+    background-color: #ffffff;
+    box-shadow: 0rem 0rem 0.18rem rgba(0,0,0,.20);
+}
+.teaching .case .info{
+    padding: 0.3rem 0.3rem;
+    box-sizing: border-box;
+}
+.teaching .case .info .box{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.teaching .case .info .box .head{
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 0.4rem;
+}
+.teaching .case .info .box .box-content .cname{
+    font-size: 0.24rem;
+    color: #333333;
+    font-weight: bold;
+    line-height: 0.24rem;
+}
+.teaching .case .info .box .box-content {
+    height: 2rem;
+    width: 4.3rem;
+}
+.teaching .case .info .box .box-content .cname .ename{
+    font-size: 0.18rem;
+    color: #333333;
+    font-weight: bold;
+    line-height: 0.18rem;
+}
+.teaching .case .info .box .box-content .position{
+    padding: 0.15rem 0rem;
+    color: #333333;
+    font-size: 0.20rem;
+    line-height: 0.20rem;
+}
+.teaching .case .info .box .box-content .teachName{
+    width: 100%;
+    display: block;
+    padding: 0.05rem 0;
+    color: #333333;
+    font-size: 0.20rem;
+    line-height: 0.20rem;
+}
+.teaching .case .info .box .box-content .area{
+    margin-top: 0.1rem;
+    color: #333333;
+    font-size: 0.20rem;
+    line-height: 0.24rem;
+    width: 4.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.teaching .case .info  .jianjie{
+    margin-top: 0.3rem;
+    font-size: 0.18rem;
+    line-height: 0.18rem;
+    font-weight: bold;
+    float: left;
+}
+.teaching .case .info  .jianjie-content{
+    margin-top: 0.25rem;
+    font-size: 0.18rem;
+    line-height: 0.3rem;
+}
+.teaching .blank{
+    margin-top: 0.7rem;
+}

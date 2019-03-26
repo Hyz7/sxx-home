@@ -3,6 +3,8 @@ package com.sxx.framework.domain.base;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈实体类通用类〉
@@ -13,6 +15,6 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class BaseDomain {
+public class BaseDomain implements Serializable {
     private Long id;
 }

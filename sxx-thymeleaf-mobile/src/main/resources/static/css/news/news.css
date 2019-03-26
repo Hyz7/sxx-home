@@ -1,0 +1,75 @@
+.news-container{
+    width: 100%;
+    margin-top:2.4rem;
+    padding: 0.2rem 0.24rem 0.2rem 0.24rem;
+    box-sizing: border-box;
+}
+.news-container>.title{
+    font-size: 0.3rem;
+    color: #333;
+    line-height: 0.3rem;
+    text-align: center;
+}
+.news-container .tabChange{
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0.2rem 0;
+}
+.news-container .tabChange>li{
+    flex: 1;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    text-align: center;
+    border: 0.01rem solid #4E8CEE;
+}
+.news-container .tabChange>li.active{
+    background-color:  #4E8CEE;
+    color: #fff;
+}
+.news-container .newsBox{
+    display: none;
+    min-height: 3rem;
+}
+.news-container .newsBox:first-child{
+    display: block;
+}
+.news-container .newsBox>li>a{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.news-container .newsBox>li{
+    width: 100%;
+    margin: 0.15rem 0;
+}
+.news-container .newsBox>li img{
+    flex: 13;
+    width: 2.6rem;
+    height: 1.6rem;
+    display: block;
+    margin-right: 0.1rem;
+}
+.news-container .newsBox>li .content{
+    flex: 20;
+    position: relative;
+}
+.news-container .newsBox>li .title{
+    font-size: 0.24rem;
+    line-height: 0.24rem;
+    color: #333333;
+    width: 4rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 0.1rem;
+}
+.news-container .newsBox>li .desc{
+    font-size: 0.18rem;
+    color: #666;
+    line-height: 0.27rem;
+}
+.news-container .newsBox>li .time{
+    font-size: 0.18rem;
+    color: #999;
+    position: absolute;
+    bottom: 0;
+}

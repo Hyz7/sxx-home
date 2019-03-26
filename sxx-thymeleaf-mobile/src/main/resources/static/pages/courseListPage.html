@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>思学行</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/init.css"/>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/courseListPage/courseListPage.css">
+    <script src="../js/utils/jquery.1.9.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/utils/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/utils/pm.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(function () {
+            $(".category-btn").on("click",function () {
+                $(".introduceContent").eq($(this).index()).addClass("active").siblings().removeClass('active')
+            })
+        })
+    </script>
+</head>
+<body style="visibility: hidden">
+<!--页头-->
+<div class='header-container'>
+    <div class="header-logo">
+        <img class="logo" src="../images/logo.png" alt="">
+        <img class="header-text" src="../images/headertext.png" alt="">
+        <img class="menu-btn" src="../images/menubtn.png" alt="">
+        <ul class="menu-container">
+            <li><a href="../index.html">首页<span>></span></a></li>
+            <li><a href="../pages/hot.html">热门课程<span>></span></a></li>
+            <li><a href="../pages/core.html">核心优势<span>></span></a></li>
+            <li><a href="http://www.sixuexing.com:32000/teaching/showTeacherList">授课导师<span>></span></a></li>
+            <li><a href="http://www.sixuexing.com:32000/mobile/getMobileNewsList">思学行动态<span>></span></a></li>
+            <li><a href="../pages/invite.html">人才招聘<span>></span></a></li>
+            <li><a href="../pages/aboutUs.html">关于我们<span>></span></a></li>
+        </ul>
+    </div>
+    <div class="banner-container">
+        <img src="../images/banner1.png" alt="">
+    </div>
+</div>
+
+<!--内容-->
+<div class="courseListPage">
+    <div class="video">
+        <img src="../images/courseListPage/img1.png" alt="" class="watch">
+        <div class="content">
+            <div class="title">视频课</div>
+            <div class="box">
+                <div class="teacher">主讲老师：李维江</div>
+                <div class="count">观看次数：25004</div>
+            </div>
+            <div class="time">
+                发布时间：<br/>
+                2018-11-8 11:12
+            </div>
+        </div>
+    </div>
+    <div class="sale">
+        <div class="limit">
+            <div class="saleTime">限量特惠 2018.11.20 ~ 2018.11.30 <span class="saleCount">剩1865份 恢复原价</span></div>
+        </div>
+        <div class="remain">
+            <div class="remainContent">活动价：<span class="money">¥00.00</span><s class="money2">原件¥99.00</s></div>
+        </div>
+    </div>
+    <div class="category">
+        <div class="category-btn introduce active">课程介绍</div>
+        <div class="category-btn lecturer">主讲老师</div>
+    </div>
+    <div class="box">
+        <div class="introduceContent active">
+            <p>
+                本课程是《跟宁哥学区块链开发》的项目实战课程
+            </p>
+            <p>
+                本系列课程包含了
+            </p>
+            <p>
+                区块链和以太坊基础知识、
+            </p>
+            <p>
+                Solidity语言详解、
+            </p>
+            <p>
+                Web3.js详解、
+            </p>
+            <p>
+                Truffle以太坊开发框架、
+            </p>
+            <p>
+                项目实战（包括支持以太坊的微信小程序版记事本、用Electron实现的DApp云笔记、用Electron实现的DApp MySQL数据库管理系统【支持将数据保存到以太坊中】）
+            </p>
+        </div>
+        <div class="introduceContent">
+            <img src="../images/courseListPage/head.png" alt="" class="head">
+            <div class="name">李维江</div>
+            <div class="teachIntro">
+                美国斯蒂文斯理工学院网络信息工程硕士，曾就职于美国华尔街大都会通信有限公司，从事金融、数据软件产品开发和运营。长期参与美国公司实验室区块链应用的研究和实践，熟悉比特币和以太坊的源代码设计及技术开发。
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--页尾-->
+<div class="footer-container">
+    <div class="box">
+        <span>联系我们</span>
+        <div class="text">地址：成都高新区吉泰五路88号香年广场T3栋14楼</div>
+        <div class="text">企业邮箱：sxx@sixuexing.com</div>
+        <div class="text" style="margin-bottom: 0.2rem;">企业QQ：2507819723</div>
+        <span>服务热线</span>
+        <i>400-000-0000</i>
+        <div class="text">咨询时间：09：00-18：00</div>
+    </div>
+    <div class="box">
+        <span>关注公众号</span>
+        <img src="../images/footer/publicNum.png" alt="">
+        <div class="zixun">动态和资讯都在这里</div>
+    </div>
+</div>
+<div class="bottomText">
+    <p class="text">Copyright 2018sixuexing.com All Rights Reservde成都思学行教育科技有限公司
+        蜀ICP备18033964号</p>
+</div>
+<div class="bottomBtn">
+    <!--<a class="btn-box" href="mqqwpa://im/chat?chat_type=wpa&uin=2507819723&version=1&src_type=web&web_src=oicqzone.com" target="_blank">-->
+    <a class="btn-box" href="http://wpa.qq.com/msgrd?v=3&uin=2507819723&site=qq&menu=yes">
+        <img src="../images/footer/online.png" alt="">
+        <div class="text">在线咨询</div>
+    </a>
+    <div class="btn-box">
+        <img src="../images/footer/baoming.png" alt="">
+        <div class="text">点击报名</div>
+    </div>
+    <a class="btn-box" href="tel:028-8525-3153">
+        <img src="../images/footer/server.png" alt="">
+        <div class="text">咨询热线</div>
+    </a>
+</div>
+<script type="text/javascript">
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 3000, //可选选项，自动滑动
+        pagination: '.swiper-pagination',
+        paginationType: 'bullets',
+    })
+</script>
+</body>
+</html>

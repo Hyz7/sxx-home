@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>思学行</title>
+    <link rel="shortcut icon" href="../favicon.ico"/>
+    <link rel="bookmark" href="../favicon.ico"/>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/init.css"/>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/core/core.css">
+    <script src="../js/utils/jquery.1.9.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/utils/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/utils/pm.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body style="visibility: hidden">
+<!--页头-->
+<div th:fragment="headerCopy">
+    <div class='header-container'>
+        <div class="header-logo">
+            <img class="logo" src="../images/logo.png" alt="">
+            <img class="header-text" src="../images/headertext.png" alt="">
+            <img class="menu-btn" src="../images/menubtn.png" alt="">
+            <ul class="menu-container">
+                <li><a href="../index.html">首页<span>></span></a></li>
+                <li><a href="">热门课程<span>></span></a></li>
+                <li><a href="l">核心优势<span>></span></a></li>
+                <li><a href="">授课导师<span>></span></a></li>
+                <li><a href="l">思学行动态<span>></span></a></li>
+                <li><a href="tml">人才招聘<span>></span></a></li>
+                <li><a href="html">关于我们<span>></span></a></li>
+            </ul>
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">slider1</div>
+                <div class="swiper-slide">slider2</div>
+                <div class="swiper-slide">slider3</div>
+            </div>
+            <div class="swiper-pagination swiper-pagination-bullets"></div>
+        </div>
+    </div>
+</div>
+<!--页尾-->
+<footer  th:fragment="footerCopy">
+    <div class="footer-container">
+        <div class="box">
+            <span>联系我们</span>
+            <div class="text">地址：成都高新区吉泰五路88号香年广场T3栋14楼</div>
+            <div class="text">企业邮箱：sxx@sixuexing.com</div>
+            <div class="text" style="margin-bottom: 0.2rem;">企业QQ：2507819723</div>
+            <span>服务热线</span>
+            <i>400-000-0000</i>
+            <div class="text">咨询时间：09：00-18：00</div>
+        </div>
+        <div class="box">
+            <span>关注公众号</span>
+            <img src="../images/footer/publicNum.png" alt="">
+            <div class="zixun">动态和资讯都在这里</div>
+        </div>
+    </div>
+    <div class="bottomText">
+        <p class="text">Copyright 2018sixuexing.com All Rights Reservde成都思学行教育科技有限公司
+            蜀ICP备18033964号</p>
+    </div>
+    <div class="bottomBtn">
+        <div class="btn-box">
+            <img src="../images/footer/online.png" alt="">
+            <div class="text">在线咨询</div>
+        </div>
+        <div class="btn-box">
+            <img src="../images/footer/baoming.png" alt="">
+            <div class="text">点击报名</div>
+        </div>
+        <div class="btn-box">
+            <img src="../images/footer/server.png" alt="">
+            <div class="text">咨询热线</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 3000, //可选选项，自动滑动
+            pagination: '.swiper-pagination',
+            paginationType: 'bullets',
+        })
+    </script>
+</footer >
+</body>
+</html>

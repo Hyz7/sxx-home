@@ -7,10 +7,13 @@ import lombok.ToString;
 
 
 /**
- * Created by admin on 2018/3/5.
+ * 用户登录响应代码类
  */
 @ToString
 public enum UcenterCode implements ResultCode {
+    /**
+     * 用户登录响应代码
+     */
     UCENTER_USERNAME_NONE(false,23001,"请输入账号！"),
     UCENTER_PASSWORD_NONE(false,23002,"请输入密码！"),
     UCENTER_VERIFYCODE_NONE(false,23003,"请输入验证码！"),

@@ -1,0 +1,152 @@
+.blockchain-container{
+    background-color: #F0F0F0;
+    margin-top: 2.4rem;
+    padding: 0.2rem 0.24rem ;
+    box-sizing: border-box;
+    font-size: 0.22rem;
+    color: #333;
+}
+.blockchain-container .title{
+    font-size: 0.4rem;
+    margin: 0.1rem 0.1rem 0.1rem 0;
+    color: #5E97EF;
+    white-space: nowrap;
+}
+.blockchain-container .out-box{
+    display: flex;
+    flex-wrap: nowrap;
+    line-height: 0.4rem;
+    font-size: 0.22rem;
+    color: #333;
+}
+.blockchain-container table{
+    /*display: flex;*/
+    margin-top: 0.2rem;
+}
+.blockchain-container table tbody>tr>th{
+    white-space: nowrap;
+    height: 0.4rem;
+    min-height: 0.4rem;
+    max-height: 0.7rem;
+    text-align: center;
+    background-color: #4e8cee;
+    color: #fff;
+    border-right: 0.01rem solid #fff;
+}
+.blockchain-container table tbody>tr>th:last-child{
+    border-right: 0;
+}
+.blockchain-container table tbody>tr>th:first-child{
+    min-width: 2rem;
+}
+.blockchain-container table tbody>tr>td{
+    line-height: 0.4rem;
+    border: 0.01rem solid #4e8cee;
+    padding: 0 0.1rem;
+    box-sizing: border-box;
+    font-size: 0.22rem;
+    color: #333;
+}
+.blockchain-container table tbody>tr .last-td{
+    white-space: nowrap;
+    text-align: center;
+    min-width: 1.5rem;
+}
+#item6{
+    width: 100%;
+    margin-top: 0.15rem;
+    height: 2.7rem;
+    padding: 0.2rem 0.24rem;
+    box-sizing: border-box;
+}
+#item1 .title{
+    font-size: 0.4rem!important;
+    color: #4D4D4D;
+    margin: 0.2rem auto;
+    width: 3rem!important;
+}
+#item1 .case{
+    display: block;
+    margin-bottom: 0.2rem;
+    width: 7rem;
+    height: 6rem;
+    box-shadow: 0rem 0rem 0.18rem rgba(0,0,0,.20);
+}
+#item1 .case .info{
+    padding: 0.3rem 0.3rem;
+    box-sizing: border-box;
+}
+#item1 .case .info .box{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#item1 .case .info .box .head{
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 0.4rem;
+}
+#item1 .case .info .box .box-content .cname{
+    font-size: 0.24rem;
+    color: #333333;
+    font-weight: bold;
+    line-height: 0.24rem;
+}
+#item1 .case .info .box .box-content {
+    height: 2rem;
+    width: 4.3rem;
+}
+#item1 .case .info .box .box-content .cname .ename{
+    font-size: 0.18rem;
+    color: #333333;
+    font-weight: bold;
+    line-height: 0.18rem;
+}
+#item1 .case .info .box .box-content .position{
+    padding: 0.15rem 0rem;
+    color: #333333;
+    font-size: 0.20rem;
+    line-height: 0.20rem;
+}
+#item1 .case .info .box .box-content .teachName{
+    width: 100%;
+    display: block;
+    padding: 0.05rem 0;
+    color: #333333;
+    font-size: 0.20rem;
+    line-height: 0.20rem;
+}
+#item1 .case .info .box .box-content .area{
+    margin-top: 0.1rem;
+    color: #333333;
+    font-size: 0.20rem;
+    line-height: 0.24rem;
+    width: 4.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+#item1 .case .info  .jianjie{
+    margin-top: 0.3rem;
+    font-size: 0.18rem;
+    line-height: 0.18rem;
+    font-weight: bold;
+    float: left;
+}
+#item1 .case .info  .jianjie-content{
+    margin-top: 0.25rem;
+    font-size: 0.18rem;
+    line-height: 0.3rem;
+}
+#item6>.title{
+    font-size: 0.4rem!important;
+    color: #4D4D4D;
+    margin: 0 auto;
+    width: 1.5rem!important;
+}
+#item6 img{
+    width: 100%;
+    margin-top: 0.2rem;
+    height: 1.4rem;
+}
