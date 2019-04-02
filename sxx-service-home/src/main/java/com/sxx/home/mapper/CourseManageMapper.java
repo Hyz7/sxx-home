@@ -12,9 +12,7 @@ import com.github.pagehelper.Page;
 import com.sxx.framework.domain.course.Course;
 import com.sxx.framework.domain.course.dto.CourseListDTO;
 import com.sxx.framework.domain.course.ext.TeachplanNode;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface CourseManageMapper {
@@ -43,4 +41,6 @@ public interface CourseManageMapper {
      */
     TeachplanNode findTeachplanList(@Param("courseId") String courseId);
 
+    @Update("update course set course_watch_count = course_watch_count+1 where course_id = #{courseId}")
+    void addWatchCount(@Param("courseId") String courseId);
 }

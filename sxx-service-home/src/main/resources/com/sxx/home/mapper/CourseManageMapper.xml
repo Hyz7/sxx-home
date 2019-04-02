@@ -35,12 +35,12 @@
         b.p_name two_name,
         c.id three_id,
         c.p_name three_name,
-		m.media_url
+        m.media_url
         FROM
         teachplan a
         LEFT JOIN teachplan b ON a.id = b.parent_id
         LEFT JOIN teachplan c ON b.id = c.parent_id
-		LEFT JOIN teachplan_media m on c.id = m.teachplan_id
+        LEFT JOIN teachplan_media m ON c.id = m.teachplan_id
         WHERE
         a.parent_id = '0'
         AND a.course_id = #{courseId}
@@ -48,6 +48,5 @@
         a.order_by,
         b.order_by,
         c.order_by
-
     </select>
 </mapper>

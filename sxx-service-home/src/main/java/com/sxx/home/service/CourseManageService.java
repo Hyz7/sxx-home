@@ -8,10 +8,13 @@ import com.sxx.framework.domain.course.ext.TeachplanNode;
 import com.sxx.framework.domain.course.response.CourseListDTOResult;
 import com.sxx.framework.domain.course.response.CourseResult;
 import com.sxx.framework.model.response.CommonCode;
+import com.sxx.framework.model.response.ResponseResult;
 import com.sxx.home.mapper.CourseManageMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -46,7 +49,13 @@ public class CourseManageService {
      * @param courseId 课程id
      * @return 课程信息结果
      */
+    @Transactional(rollbackOn = Exception.class)
     public CourseResult queryCourseInformationByCourseId(String courseId) {
+        if (StringUtils.isEmpty(courseId)){
+            new CourseResult(CommonCode.INVALID_PARAM, null);
+        }
+        // 增加课程播放次数
+        courseManageMapper.addWatchCount(courseId);
         Course course = courseManageMapper.queryCourseInformationByCourseId(courseId);
         return new CourseResult(CommonCode.SUCCESS, course);
     }
@@ -58,6 +67,9 @@ public class CourseManageService {
      * @return 结果
      */
     public TeachplanNode findTeachplanList(String courseId) {
+        if (StringUtils.isEmpty(courseId)){
+            return null;
+        }
         return courseManageMapper.findTeachplanList(courseId);
     }
 
