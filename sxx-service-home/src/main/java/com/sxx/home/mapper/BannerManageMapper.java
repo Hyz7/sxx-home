@@ -16,6 +16,6 @@ import java.util.List;
 
 @Mapper
 public interface BannerManageMapper {
-    @Select("select banner_id,banner_image from banner where status = '1' order_by asc, update_time desc")
+    @Select("select banner_id,banner_image,forward_url from banner  where status = '1' ORDER BY order_by asc, update_time desc")
     List<BannerDTO> queryBannerList();
 }
