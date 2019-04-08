@@ -39,5 +39,7 @@ public class Banner implements Serializable {
     private Boolean status;
     @ApiModelProperty("更新时间")
     private Boolean updateTime;
+    @ApiModelProperty("跳转链接")
+    private Boolean forwardUrl;
 
 }

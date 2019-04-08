@@ -16,4 +16,5 @@ import java.io.Serializable;
 public class BannerDTO implements Serializable {
     private String bannerId;
     private String bannerImage;
+    private String forwardUrl;
 }
