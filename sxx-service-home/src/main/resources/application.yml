@@ -15,6 +15,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+    database: mysql
 mybatis:
   configuration:
     mapUnderscoreToCamelCase: true # 开启驼峰命名转换法
