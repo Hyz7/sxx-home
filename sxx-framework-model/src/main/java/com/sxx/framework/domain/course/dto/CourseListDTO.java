@@ -27,4 +27,6 @@ public class CourseListDTO {
     private String courseActivityPrice;
     @ApiModelProperty("课程原价")
     private String courseOriginalPrice;
+    @ApiModelProperty("课程分类1：宣讲 2：课程")
+    private String classify;
 }
