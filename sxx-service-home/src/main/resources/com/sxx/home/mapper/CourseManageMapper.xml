@@ -3,7 +3,7 @@
 <mapper namespace="com.sxx.home.mapper.CourseManageMapper">
 
     <select id="queryList" parameterType="java.lang.String" resultType="com.sxx.framework.domain.course.dto.CourseListDTO">
-        select c.course_id,c.course_title,c.course_sub_title,c.course_image,c.course_activity_price,c.course_original_price,c.classify
+        select c.course_id,c.course_title,c.course_sub_title,c.course_watch_count,c.course_image,c.course_activity_price,c.course_original_price,c.classify
         from course c
         where c.status = '1'
         <if test="courseTitle != null and courseTitle != '' and courseTitle != 'undefined'">
